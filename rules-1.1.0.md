@@ -3,7 +3,7 @@ layout: scalastyle
 title: "Scalastyle: Implemented Rules"
 ---
 
-There are 69 rules which are currently implemented:
+There are 72 rules which are currently implemented:
 
 | Checker | Description |
 | ------------- | ------------- |
@@ -17,6 +17,7 @@ There are 69 rules which are currently implemented:
 |[org.scalastyle.file.RegexChecker](#org_scalastyle_file_RegexChecker)|Checks that a regular expression cannot be matched, if found reports this|
 |[org.scalastyle.file.WhitespaceEndOfLineChecker](#org_scalastyle_file_WhitespaceEndOfLineChecker)|Check that there is no trailing whitespace at the end of lines|
 |[org.scalastyle.scalariform.BlockImportChecker](#org_scalastyle_scalariform_BlockImportChecker)|Checks that block imports are not used.|
+|[org.scalastyle.scalariform.CaseBraceChecker](#org_scalastyle_scalariform_CaseBraceChecker)|Checks that braces aren't used in case clauses|
 |[org.scalastyle.scalariform.ClassNamesChecker](#org_scalastyle_scalariform_ClassNamesChecker)|Check that class names match a regular expression|
 |[org.scalastyle.scalariform.ClassTypeParameterChecker](#org_scalastyle_scalariform_ClassTypeParameterChecker)|Checks that type parameter to a class matches a regular expression|
 |[org.scalastyle.scalariform.CovariantEqualsChecker](#org_scalastyle_scalariform_CovariantEqualsChecker)|Check that classes and objects do not define equals without overriding equals(java.lang.Object).|
@@ -31,6 +32,7 @@ There are 69 rules which are currently implemented:
 |[org.scalastyle.scalariform.EqualsHashCodeChecker](#org_scalastyle_scalariform_EqualsHashCodeChecker)|Check that if a class implements either equals or hashCode, it should implement the other|
 |[org.scalastyle.scalariform.FieldNamesChecker](#org_scalastyle_scalariform_FieldNamesChecker)|Check that field names match a regular expression|
 |[org.scalastyle.scalariform.ForBraceChecker](#org_scalastyle_scalariform_ForBraceChecker)|Checks that braces are used in for comprehensions|
+|[org.scalastyle.scalariform.ForLoopChecker](#org_scalastyle_scalariform_ForLoopChecker)|Checks that parentheses are used in for loops|
 |[org.scalastyle.scalariform.IfBraceChecker](#org_scalastyle_scalariform_IfBraceChecker)|Checks that if statements have braces|
 |[org.scalastyle.scalariform.IllegalImportsChecker](#org_scalastyle_scalariform_IllegalImportsChecker)|Check that a class does not import certain classes|
 |[org.scalastyle.scalariform.ImportGroupingChecker](#org_scalastyle_scalariform_ImportGroupingChecker)|Checks that imports are grouped together, not throughout the file|
@@ -47,7 +49,7 @@ There are 69 rules which are currently implemented:
 |[org.scalastyle.scalariform.NoWhitespaceAfterLeftBracketChecker](#org_scalastyle_scalariform_NoWhitespaceAfterLeftBracketChecker)|No whitespace after left bracket '\['|
 |[org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker](#org_scalastyle_scalariform_NoWhitespaceBeforeLeftBracketChecker)|No whitespace before left bracket '\['|
 |[org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker](#org_scalastyle_scalariform_NoWhitespaceBeforeRightBracketChecker)|No whitespace before right bracket '']''|
-|[org.scalastyle.scalariform.NonASCIICharacterChecker](#org_scalastyle_scalariform_NonASCIICharacterChecker)|Some editors are unfriendly to non ascii characters.|
+|[org.scalastyle.scalariform.NonASCIICharacterChecker](#org_scalastyle_scalariform_NonASCIICharacterChecker)|Some editors are unfriendly to non ASCII characters.|
 |[org.scalastyle.scalariform.NotImplementedErrorUsage](#org_scalastyle_scalariform_NotImplementedErrorUsage)|Checks that the code does not have ??? operators.|
 |[org.scalastyle.scalariform.NullChecker](#org_scalastyle_scalariform_NullChecker)|Check that null is not used|
 |[org.scalastyle.scalariform.NumberOfMethodsInTypeChecker](#org_scalastyle_scalariform_NumberOfMethodsInTypeChecker)|Check that a class / trait / object does not have too many methods|
@@ -74,6 +76,7 @@ There are 69 rules which are currently implemented:
 |[org.scalastyle.scalariform.UppercaseLChecker](#org_scalastyle_scalariform_UppercaseLChecker)|Checks that if a long literal is used, then an uppercase L is used|
 |[org.scalastyle.scalariform.VarFieldChecker](#org_scalastyle_scalariform_VarFieldChecker)|Checks that classes and objects do not define mutable fields|
 |[org.scalastyle.scalariform.VarLocalChecker](#org_scalastyle_scalariform_VarLocalChecker)|Checks that functions do not define mutable variables|
+|[org.scalastyle.scalariform.WhileBraceChecker](#org_scalastyle_scalariform_WhileBraceChecker)|Checks that while body have braces|
 |[org.scalastyle.scalariform.WhileChecker](#org_scalastyle_scalariform_WhileChecker)|Checks that while is not used|
 |[org.scalastyle.scalariform.XmlLiteralChecker](#org_scalastyle_scalariform_XmlLiteralChecker)|Check that XML literals are not used|
 
@@ -172,6 +175,10 @@ A lot of projects require a header with a copyright notice, or they require a li
         <td>Header</td>
         <td>string</td>
         <td></td>
+      </tr><tr><td>regex</td>
+        <td>Header Regex</td>
+        <td>boolean</td>
+        <td>false</td>
       </tr></table>
 
 ### Example configuration
@@ -330,6 +337,23 @@ No parameters
 
 ### Example configuration
 <pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.BlockImportChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<a name="org_scalastyle_scalariform_CaseBraceChecker" />
+
+### org.scalastyle.scalariform.CaseBraceChecker - Checks that braces aren't used in case clauses
+
+ * id - disallow.case.brace
+ * description - Checks that braces aren't used in case clauses
+ * class - org.scalastyle.scalariform.CaseBraceChecker
+ * default level - WarningLevel
+
+#### Justification
+Braces aren't required in case clauses. They should be omitted according to Scala Style Guide.
+
+#### Parameters
+No parameters
+
+### Example configuration
+<pre>&lt;check enabled=&quot;true&quot; level=&quot;warning&quot; class=&quot;org.scalastyle.scalariform.CaseBraceChecker&quot;/&gt;</pre>
 <a name="org_scalastyle_scalariform_ClassNamesChecker" />
 
 ### org.scalastyle.scalariform.ClassNamesChecker - Check that class names match a regular expression
@@ -637,11 +661,55 @@ Usage of braces (rather than parentheses) within a for comprehension mean that y
 
   To fix it, replace the () with {}. And then remove the ; at the end of the lines.
 
+#### Description
+The singleLineAllowed property allows for constructions of the type:
+
+    for (i <- List(1,2,3)) yield i
+
+#### Parameters
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>singleLineAllowed</td>
+        <td>Allow parentheses for single-line for</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+### Example configuration
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ForBraceChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;singleLineAllowed&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<a name="org_scalastyle_scalariform_ForLoopChecker" />
+
+### org.scalastyle.scalariform.ForLoopChecker - Checks that parentheses are used in for loops
+
+ * id - for.loop
+ * description - Checks that parentheses are used in for loops
+ * class - org.scalastyle.scalariform.ForLoopChecker
+ * default level - WarningLevel
+
+#### Justification
+For-comprehensions which lack a yield clause is actually a loop rather than a functional comprehension and it is usually
+   more readable to string the generators together between parentheses rather than using the syntactically-confusing } { construct:
+
+   for (x <- board.rows; y <- board.files) {
+     printf("(%d, %d)", x, y)
+   }
+
+   is preferred to
+
+   for {
+     x <- board.rows
+     y <- board.files
+   } {
+     printf("(%d, %d)", x, y)
+   }
+
 #### Parameters
 No parameters
 
 ### Example configuration
-<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ForBraceChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ForLoopChecker&quot; level=&quot;warning&quot;/&gt;</pre>
 <a name="org_scalastyle_scalariform_IfBraceChecker" />
 
 ### org.scalastyle.scalariform.IfBraceChecker - Checks that if statements have braces
@@ -870,6 +938,10 @@ Long methods can be hard to read and understand.
         <td>Ignore comments</td>
         <td>boolean</td>
         <td>false</td>
+      </tr><tr><td>ignoreEmpty</td>
+        <td>Ignore empty lines</td>
+        <td>boolean</td>
+        <td>false</td>
       </tr></table>
 
 ### Example configuration
@@ -877,6 +949,7 @@ Long methods can be hard to read and understand.
  &lt;parameters&gt;
   &lt;parameter name=&quot;maxLength&quot;&gt;50&lt;/parameter&gt;
   &lt;parameter name=&quot;ignoreComments&quot;&gt;false&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreEmpty&quot;&gt;false&lt;/parameter&gt;
  &lt;/parameters&gt;
 &lt;/check&gt;</pre>
 <a name="org_scalastyle_scalariform_MethodNamesChecker" />
@@ -1064,37 +1137,45 @@ No parameters
 <pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker&quot; level=&quot;warning&quot;/&gt;</pre>
 <a name="org_scalastyle_scalariform_NonASCIICharacterChecker" />
 
-### org.scalastyle.scalariform.NonASCIICharacterChecker - Some editors are unfriendly to non ascii characters.
+### org.scalastyle.scalariform.NonASCIICharacterChecker - Some editors are unfriendly to non ASCII characters.
 
  * id - non.ascii.character.disallowed
- * description - Some editors are unfriendly to non ascii characters.
+ * description - Some editors are unfriendly to non ASCII characters.
  * class - org.scalastyle.scalariform.NonASCIICharacterChecker
  * default level - WarningLevel
 
 #### Justification
 Scala allows unicode characters as operators and some editors misbehave when they see non-ascii character.
-            In a project collaborated by a community of developers. This check can be helpful in such situations.
+    In a project collaborated by a community of developers. This check can be helpful in such situations.
 
 
-            "value".match {
-            case "value" => println("matched")
-            ...
-            }
+    "value".match {
+    case "value" => println("matched")
+    ...
+    }
 
-            is preferred to
+    is preferred to
 
-            "value".match {
-            case "value" ⇒ println("matched")
-            ...
-            }
+    "value".match {
+    case "value" ⇒ println("matched")
+    ...
+    }
 
-            To fix it, replace the (unicode operator)⇒ with =>.
+    To fix it, replace the (unicode operator)⇒ with =>.
 
 #### Parameters
-No parameters
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>allowStringLiterals</td>
+        <td>Allow non-ASCII scripts in string literals.</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
 
 ### Example configuration
-<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NonASCIICharacterChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NonASCIICharacterChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;allowStringLiterals&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
 <a name="org_scalastyle_scalariform_NotImplementedErrorUsage" />
 
 ### org.scalastyle.scalariform.NotImplementedErrorUsage - Checks that the code does not have ??? operators.
@@ -1669,6 +1750,23 @@ No parameters
 
 ### Example configuration
 <pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.VarLocalChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<a name="org_scalastyle_scalariform_WhileBraceChecker" />
+
+### org.scalastyle.scalariform.WhileBraceChecker - Checks that while body have braces
+
+ * id - while.brace
+ * description - Checks that while body have braces
+ * class - org.scalastyle.scalariform.WhileBraceChecker
+ * default level - WarningLevel
+
+#### Justification
+While cannot be used in a pure-functional manner, that's why it's recommended to never omit braces according to Scala Style Guide.
+
+#### Parameters
+No parameters
+
+### Example configuration
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.WhileBraceChecker&quot; level=&quot;warning&quot;/&gt;</pre>
 <a name="org_scalastyle_scalariform_WhileChecker" />
 
 ### org.scalastyle.scalariform.WhileChecker - Checks that while is not used
