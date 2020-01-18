@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Scala style checker" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Scala style checker</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Scala style checker</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Scalastyle examines your Scala code and indicates potential problems with it. If
+you have come across Checkstyle for Java, then you’ll have a good idea what
+scalastyle is. Except that it’s for Scala obviously.</p>
+
+<p>Scalastyle is used as part of the grading framework for the course
+<a href="https://www.coursera.org/course/progfun">Functional Programming Principles in Scala by Martin Odersky</a>
+on Coursera.</p>
+
+<h3 id="how-do-i-use-scalastyle">How do I use scalastyle?</h3>
+
+<p>The latest stable version of Scalastyle is 1.1.0 for Scala 2.11/2.12/2.13. See
+the <a href="release-notes.html">Release Notes</a>.</p>
+
+<p>There are several ways of using it:</p>
+
+<ul>
+  <li><a href="sbt.html">SBT plugin</a></li>
+  <li><a href="command-line.html">Command line</a></li>
+  <li>IntelliJ - you can enable scalastyle in IntelliJ by selecting
+Settings-&gt;Editor-&gt;Inspections, then searching for Scalastyle inspections</li>
+  <li><a href="https://sonar-scala.com">sonar-scala</a> - Scala plugin for SonarQube with built
+in support for Scalastyle</li>
+  <li><a href="https://www.codacy.com">Codacy</a> - you get out-of-the-box analysis on your git
+repositories</li>
+  <li><a href="git-pre-commit-hook.html">Git pre-commit hook</a></li>
+</ul>
+
+<p>And you’ll need a <a href="configuration.html">configuration</a> file. If you have your own
+custom rules, then see <a href="custom-rules.html">custom rules</a>.</p>
+
+<p>For the list of possible rules, see <a href="rules-1.1.0.html">Implemented Rules</a>.</p>
+
+<h4 id="download">Download</h4>
+
+<p>To download Scalastyle, the jar is available from Sonatype:
+<a href="https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.13">2.13</a>
+<a href="https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.12">2.12</a>
+<a href="https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.11">2.11</a>.<br />
+For the SBT plugin, see <a href="sbt.html">Scalastyle SBT Plugin</a>.<br />
+The latest development snapshots are available from
+<a href="https://oss.sonatype.org/content/repositories/snapshots/com/beautiful-scala/">Sonatype snapshots</a>.</p>
+
+<h3 id="rules">Rules</h3>
+
+<p>For a list of current rules, see <a href="rules-1.1.0.html">Implemented Rules</a>.</p>
+
+<p>If you want to add a rule, then please raise an
+<a href="https://github.com/beautiful-scala/scalastyle/issues">Issue</a> (or even better a
+pull request).</p>
+
+<p>For a list of rules in the latest development version, see
+<a href="rules-dev.html">Development Implemented Rules</a>.</p>
+
+<p>For the version 1.1.0 rules, see <a href="rules-1.1.0.html">1.1.0 Implemented Rules</a>.<br />
+For the version 1.0.0 rules, see <a href="rules-1.0.0.html">1.0.0 Implemented Rules</a>.<br />
+For the version 0.9.0 rules, see <a href="rules-0.9.0.html">0.9.0 Implemented Rules</a>.<br />
+For the version 0.8.0 rules, see <a href="rules-0.8.0.html">0.8.0 Implemented Rules</a>.<br />
+For the version 0.7.0 rules, see <a href="rules-0.7.0.html">0.7.0 Implemented Rules</a>.<br />
+For the version 0.6.0 rules, see <a href="rules-0.6.0.html">0.6.0 Implemented Rules</a>.<br />
+For the version 0.5.0 rules, see <a href="rules-0.5.0.html">0.5.0 Implemented Rules</a>.<br />
+For the version 0.4.0 rules, see <a href="rules-0.4.0.html">0.4.0 Implemented Rules</a>.<br />
+For the version 0.3.0 rules, see <a href="rules-0.3.0.html">0.3.0 Implemented Rules</a>.<br />
+For the version 0.2.0 rules, see <a href="rules-0.2.0.html">0.2.0 Implemented Rules</a>.<br />
+For the version 0.1.0 rules, see <a href="rules-0.1.0.html">0.1.0 Implemented Rules</a>.</p>
+
+<h3 id="contributing">Contributing</h3>
+
+<p>If you wish to contribute to Scalastyle, please see the
+<a href="developer-guide.html">Scalastyle Developer Guide</a>.</p>
+
+<h3 id="questions-and-comments">Questions and comments</h3>
+
+<p>If you have any questions or comments, please see
+<a href="https://groups.google.com/forum/#!forum/scalastyle-users">Scalastyle users Google group</a>
+or the <a href="https://github.com/scalastyle/scalastyle">Gitter</a> channel.</p>
+
+<h3 id="github-repositories">Github repositories</h3>
+
+<ul>
+  <li><a href="https://github.com/beautiful-scala/scalastyle">Scalastyle</a></li>
+  <li><a href="https://github.com/beautiful-scala/sbt-scalastyle">SBT plugin</a></li>
+  <li><a href="https://sonar-scala.com">SonarQube plugin</a></li>
+  <li><a href="https://github.com/codacy/codacy-scalastyle">Codacy plugin</a></li>
+</ul>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>

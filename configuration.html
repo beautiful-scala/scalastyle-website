@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Configuration" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Configuration</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Configuration</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="quick-start">Quick start</h3>
+
+<p>You can just use the default Scalastyle configuration
+<a href="https://raw.githubusercontent.com/beautiful-scala/scalastyle/v1.1.0/lib/scalastyle_config.xml">scalastyle_config.xml</a>.
+Right-click this link and select <code class="highlighter-rouge">Save link as</code>. This is the one we use for
+Scalastyle development, so it’s obviously the best :-)</p>
+
+<h3 id="format-of-the-file">Format of the file</h3>
+
+<p>The configuration file is XML containing a list of rules to apply to your Scala
+source. A (short) example configuration would be:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;scalastyle</span> <span class="na">commentFilter=</span><span class="s">"enabled"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Scalastyle standard configuration<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;check</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.scalastyle.file.FileTabChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;check</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.scalastyle.file.FileLengthChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parameters&gt;</span>
+    <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">"maxFileLength"</span><span class="nt">&gt;</span>800<span class="nt">&lt;/parameter&gt;</span>
+    <span class="nt">&lt;/parameters&gt;</span>
+    <span class="nt">&lt;/check&gt;</span>
+<span class="nt">&lt;/scalastyle&gt;</span>
+</code></pre></div></div>
+
+<p>Each <em>check</em> element is the name of the class which implements the checker along
+with any parameters. For a list of rules plus parameters, see
+<a href="rules-1.1.0.html">Implemented Rules</a>.</p>
+
+<h3 id="comment-filters">Comment filters</h3>
+
+<p>If you wish to turn off checking for a section of code, you can put a comment in
+the source before and after the section, with the following syntax:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off</span>
+<span class="o">...</span>
+<span class="c1">// naughty stuff</span>
+<span class="o">...</span>
+<span class="c1">// scalastyle:on</span>
+</code></pre></div></div>
+
+<p>You can switch off checking for a single line using a comment at the end of the
+line:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">naughty</span><span class="o">()</span>  <span class="c1">// scalastyle:ignore</span>
+</code></pre></div></div>
+
+<p>You can also switch off checking for a specific rule by specifying the id of the
+rule to ignore:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off magic.number</span>
+<span class="k">var</span> <span class="n">foobar</span> <span class="k">=</span> <span class="mi">134</span>
+<span class="c1">// scalastyle:on magic.number</span>
+</code></pre></div></div>
+
+<h3 id="custom-messages">Custom messages</h3>
+
+<p>If you wish to have a custom error message for a particular checker, then you
+can do so by defining a customMessage element in the configuration, such as:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;check</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.scalastyle.scalariform.MagicNumberChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;customMessage&gt;</span>Please don't use magic numbers<span class="nt">&lt;/customMessage&gt;</span>
+<span class="nt">&lt;/check&gt;</span>
+</code></pre></div></div>
+
+<p>If you wish to have a customId associated with a rule (for instance you may have
+the same rule with multiple configurations), then you can specify the customId
+attribute:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;check</span> <span class="na">customId=</span><span class="s">"this.is.custom"</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.scalastyle.scalariform.MagicNumberChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>

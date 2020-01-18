@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Git pre-commit hook" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Git pre-commit hook</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Git pre-commit hook</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="running-scalastyle-with-overcommit">Running scalastyle with overcommit</h3>
+
+<p><a href="https://github.com/brigade/overcommit">overcommit</a> is a fully configurable and
+extendable Git hook manager that includes out-of-the-box support for running
+scalastyle as a Git pre-commit hook.</p>
+
+<p>To configure overcommit to run scalastyle, include the following in your
+<code class="highlighter-rouge">.overcommit.yml</code> file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PreCommit:
+  Scalastyle:
+    enabled: true
+    flags: ['-c', 'path/to/scalastyle-config.xml']
+</code></pre></div></div>
+
+<p>This requires you to have a <code class="highlighter-rouge">scalastyle</code> executable on your PATH. See the
+<a href="command-line.html">command line</a> documentation for more info.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>

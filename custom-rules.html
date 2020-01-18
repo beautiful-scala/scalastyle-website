@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Custom rules" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Custom rules</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Custom rules</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="overview">Overview</h3>
+
+<p>Some people have rules which are specific to their sites, and which are not in
+the standard Scalastyle distribution.</p>
+
+<p>First, you will need to create a jar containing your custom rules. This should
+contain the classes and a <code class="highlighter-rouge">reference.conf</code> typesafe config file, which contains
+the error messages for your rule.</p>
+
+<p>The sbt, and command line support custom rules, since version <code class="highlighter-rouge">0.7.0</code>.</p>
+
+<h3 id="creating-your-jar">Creating your jar</h3>
+
+<p>So, for instance, if you had the following checker:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">org</span><span class="p">.</span><span class="n">ext</span>
+
+<span class="p">//</span> <span class="n">checks</span> <span class="n">that</span> <span class="n">we</span> <span class="n">don</span><span class="s1">'t use foobar
+class NoFoobarChecker extends ScalariformChecker {
+  val errorKey = "dont.use.foobar"
+
+  final def verify(ast: CompilationUnit): List[ScalastyleError] = {
+    List() // details left as an exercise for the reader
+  }
+}
+</span></code></pre></div></div>
+
+<p>Note that the <code class="highlighter-rouge">errorKey</code> val is <code class="highlighter-rouge">dont.use.foobar</code>. Make sure you compile this
+class with the correct version of Scala (2.11/2.12/2.13). To find the correct
+version, see the appropriate plugin (sbt or command line). With this class, you
+need the following <code class="highlighter-rouge">reference.conf</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dont.use.foobar.message = "Avoid using foobar"
+dont.use.foobar.label = "Foobar"
+dont.use.foobar.description = "Check that foobar is not used"
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">reference.conf</code> should be at the top level of the jar, so your final jar will
+look something like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jar tf nofoobarchecker.jar
+  org/
+  org/ext/
+  org/ext/NoFoobarChecker.class
+  reference.conf
+</code></pre></div></div>
+
+<p>You can have more than one rule in the jar, but you’ll need a single
+<code class="highlighter-rouge">reference.conf</code> with all of the messages for your rules.</p>
+
+<p>And you’ll obviously need to change your configuration as well:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;scalastyle</span> <span class="na">commentFilter=</span><span class="s">"enabled"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>Scalastyle standard configuration<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;check</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.scalastyle.scalariform.NullChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/check&gt;</span>
+  <span class="nt">&lt;check</span> <span class="na">level=</span><span class="s">"warning"</span> <span class="na">class=</span><span class="s">"org.ext.NoFoobarChecker"</span> <span class="na">enabled=</span><span class="s">"true"</span><span class="nt">&gt;&lt;/check&gt;</span>
+<span class="nt">&lt;/scalastyle&gt;</span>
+</code></pre></div></div>
+
+<p>Once you have the jar, you’ll have to modify your sbt plugin configuration, your
+maven plugin configuration or your command line.</p>
+
+<h3 id="sbt">sbt</h3>
+
+<p>sbt is easy. You can add the jar as a normal library dependency into your
+<code class="highlighter-rouge">project/plugins.sbt</code>:</p>
+
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addSbtPlugin</span><span class="o">(</span><span class="s">"com.beautiful-scala"</span> <span class="o">%%</span> <span class="s">"sbt-scalastyle"</span> <span class="o">%</span> <span class="s">"1.1.0"</span><span class="o">)</span>
+<span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.ext"</span> <span class="o">%%</span> <span class="s">"nofoobarchecker"</span> <span class="o">%</span> <span class="s">"1.0.0"</span>
+</code></pre></div></div>
+
+<p>Or just copy the custom rules into your <code class="highlighter-rouge">project/lib</code> directory, and you should
+be good to go.</p>
+
+<h3 id="command-line">Command line</h3>
+
+<p>The command line has an extra parameter <code class="highlighter-rouge">--externalJar</code> or <code class="highlighter-rouge">-e</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> scalastyle_2.13-1.1.0-assembly.jar <span class="se">\</span>
+  <span class="nt">-c</span> scalastyle_config.xml <span class="se">\</span>
+  <span class="nt">--externalJar</span> nofoobarchecker.jar <span class="se">\</span>
+  src/main/scala
+</code></pre></div></div>
+
+<p>You will need to use whatever version of scala that you specify on the command
+line to compile your custom rules.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>

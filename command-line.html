@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Command line" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Command line</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Command line</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="running-scalastyle-using-coursier">Running Scalastyle using Coursier</h3>
+
+<h4 id="install-coursier">Install Coursier</h4>
+
+<p><strong>Mac OS X</strong> - using <a href="http://brew.sh">Homebrew</a></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew tap coursier/formulas
+brew <span class="nb">install </span>coursier/formulas/coursier
+</code></pre></div></div>
+
+<p><strong>Linux</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Lo</span> coursier https://git.io/coursier-cli
+<span class="nb">chmod</span> +x coursier
+</code></pre></div></div>
+
+<p><strong>Windows</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bitsadmin /transfer downloadCoursierCli https://git.io/coursier-cli "%cd%\coursier"
+bitsadmin /transfer downloadCoursierBat https://git.io/coursier-bat "%cd%\coursier.bat"
+</code></pre></div></div>
+
+<p>More details on Coursier’s <a href="https://get-coursier.io/docs/cli-overview">website</a>.</p>
+
+<h4 id="execute-scalastyle">Execute Scalastyle:</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>coursier launch com.beautiful-scala:scalastyle_2.13:1.1.0 <span class="se">\</span>
+    <span class="nt">-M</span> org.scalastyle.Main <span class="nt">--</span> <span class="se">\</span>
+    <span class="nt">-c</span> scalastyle_config.xml <span class="se">\</span>
+    src/main/scala
+</code></pre></div></div>
+
+<h3 id="running-scalastyle-from-the-command-line">Running Scalastyle from the command line</h3>
+
+<p>Download</p>
+
+<ul>
+  <li><a href="https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.13/1.1.0/scalastyle_2.13-1.1.0-assembly.jar">scalastyle_2.13-1.1.0-assembly.jar</a></li>
+  <li><a href="https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.12/1.1.0/scalastyle_2.12-1.1.0-assembly.jar">scalastyle_2.12-1.1.0-assembly.jar</a></li>
+  <li><a href="https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.11/1.1.0/scalastyle_2.11-1.1.0-assembly.jar">scalastyle_2.11-1.1.0-assembly.jar</a></li>
+</ul>
+
+<p>Execute the jar like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ java -jar scalastyle_2.13-1.1.0-assembly.jar -c scalastyle_config.xml src/main/scala
+</code></pre></div></div>
+
+<p>You’ll need a <a href="configuration.html">configuration</a>.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>

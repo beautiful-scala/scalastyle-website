@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle - Developer guide" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle - Developer guide</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle - Developer guide</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="contributing">Contributing</h3>
+
+<p>Want to contribute? Great! Look at the wiki for potential rules to implement, or
+do one of your own, and implement it.</p>
+
+<ol>
+  <li>Read this document.</li>
+  <li>Fork the repo.</li>
+  <li>Create a branch (<code class="highlighter-rouge">git checkout -b my-new-rule</code>)</li>
+  <li>Commit your changes (<code class="highlighter-rouge">git commit -am "Added NoFooAllowed"</code>)</li>
+  <li>Push to the branch (<code class="highlighter-rouge">git push origin my-new-rule</code>)</li>
+  <li>Create a <a href="https://github.com/beautiful-scala/scalastyle/issues">PR</a> with a
+link to your branch</li>
+  <li>Enjoy a coffee and wait</li>
+</ol>
+
+<h3 id="pre-requisites">Pre-requisites</h3>
+
+<ul>
+  <li><a href="http://gitscm.com">git</a></li>
+  <li><a href="http://www.scala-sbt.org">sbt</a></li>
+</ul>
+
+<h3 id="source-control-git--github--building">Source control (git &amp; github) &amp; building:</h3>
+
+<p>First, fork the repo on github. On
+<a href="https://github.com/beautiful-scala/scalastyle">https://github.com/beautiful-scala/scalastyle</a>,
+click on the button ‘Fork’ and wait a couple of seconds. This will create your
+own fork of the git repo. You should always work with this repo, and create Pull
+Requests to the main scalastyle repo.</p>
+
+<p>To clone the git repo, and check out the master branch:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:&lt;yourgithubnamehere&gt;/scalastyle.git
+<span class="nb">cd </span>scalastyle
+</code></pre></div></div>
+
+<p>Scalastyle uses <a href="http://www.scala-sbt.org">sbt</a> to build. To create the
+distribution, run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbt package
+</code></pre></div></div>
+
+<p>You will need sbt 1 to build. This will compile the source code and run the
+tests.</p>
+
+<h3 id="getting-started-with-development">Getting started with development</h3>
+
+<p>When you’re developing, it’s pretty much always a good idea to create a local
+branch and commit to that.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch my-great-new-checker
+git checkout my-great-new-checker
+...
+<span class="c"># create beautiful code</span>
+git commit <span class="nt">-m</span> <span class="s2">"Add checker to check that my code is great."</span>
+</code></pre></div></div>
+
+<p>Then, when you’ve finished, go onto github, and create a pull request so that
+the code can be reviewed and pulled into the Scalastyle repo.</p>
+
+<h3 id="testing">Testing</h3>
+
+<p>To run the tests:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbt <span class="nb">test</span>
+</code></pre></div></div>
+
+<h3 id="submitting-pull-requests">Submitting pull requests</h3>
+
+<p>Pull requests are always welcome. To create a pull request, go to your repo, and
+click on <code class="highlighter-rouge">Pull Request</code>. Enter the commit details, and submit it. This will
+create an issue in github for scalastyle, which will notify the maintainers. The
+following things make it more likely that we will accept your pull request:</p>
+
+<ul>
+  <li>We do Test Driven Development. Please create tests for your code.</li>
+  <li>The pull request is a single commit. This means that there will only be one
+log message for the change. This makes it a lot easier for everyone. See the
+section on squashing.</li>
+  <li>The code has the correct style. To check this, you can use Scalastyle.
+Seriously, use the scalastyle_config.xml to check your code.</li>
+</ul>
+
+<p>For pull requests, please follow the guidelines in
+<a href="http://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests">10 tips for better Pull Requests by Mark Seemann</a>.
+If you do, they are a lot more likely to get accepted.</p>
+
+<h3 id="what-to-work-on">What to work on</h3>
+
+<p>Please see the set of
+<a href="https://github.com/beautiful-scala/scalastyle/issues">issues</a>.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>
