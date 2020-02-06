@@ -13,7 +13,7 @@ on Coursera.
 
 ### How do I use scalastyle?
 
-The latest stable version of Scalastyle is 1.1.0 for Scala 2.11/2.12/2.13. See
+The latest stable version of Scalastyle is 1.1.1 for Scala 2.11/2.12/2.13. See
 the [Release Notes](release-notes.html).
 
 There are several ways of using it:
@@ -31,7 +31,7 @@ There are several ways of using it:
 And you'll need a [configuration](configuration.html) file. If you have your own
 custom rules, then see [custom rules](custom-rules.html).
 
-For the list of possible rules, see [Implemented Rules](rules-1.1.0.html).
+For the list of possible rules, see [Implemented Rules](rules-1.1.1.html).
 
 #### Download
 
@@ -45,7 +45,7 @@ The latest development snapshots are available from
 
 ### Rules
 
-For a list of current rules, see [Implemented Rules](rules-1.1.0.html).
+For a list of current rules, see [Implemented Rules](rules-1.1.1.html).
 
 If you want to add a rule, then please raise an
 [Issue](https://github.com/beautiful-scala/scalastyle/issues) (or even better a
@@ -54,6 +54,7 @@ pull request).
 For a list of rules in the latest development version, see
 [Development Implemented Rules](rules-dev.html).
 
+For the version 1.1.1 rules, see [1.1.1 Implemented Rules](rules-1.1.1.html).  
 For the version 1.1.0 rules, see [1.1.0 Implemented Rules](rules-1.1.0.html).  
 For the version 1.0.0 rules, see [1.0.0 Implemented Rules](rules-1.0.0.html).  
 For the version 0.9.0 rules, see [0.9.0 Implemented Rules](rules-0.9.0.html).  

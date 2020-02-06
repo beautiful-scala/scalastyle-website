@@ -3,6 +3,14 @@ layout: scalastyle
 title: "Scalastyle - Release notes"
 ---
 
+# Version 1.1.1
+
+Fixes
+
+- Don't process files multiple times.
+  ([#1](https://github.com/beautiful-scala/scalastyle/pull/1) -
+  [@michih57](https://github.com/michih57))
+
 # Version 1.1.0
 
 New features
