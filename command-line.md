@@ -33,7 +33,7 @@ More details on Coursier's [website](https://get-coursier.io/docs/cli-overview).
 #### Execute Scalastyle:
 
 ```bash
-coursier launch com.beautiful-scala:scalastyle_2.13:1.1.1 \
+coursier launch com.beautiful-scala:scalastyle_2.13:{{site.version}} \
     -M org.scalastyle.Main -- \
     -c scalastyle_config.xml \
     src/main/scala
@@ -43,12 +43,12 @@ coursier launch com.beautiful-scala:scalastyle_2.13:1.1.1 \
 
 Download
 
-- [scalastyle_2.13-1.1.1-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.13/1.1.1/scalastyle_2.13-1.1.1-assembly.jar)
-- [scalastyle_2.12-1.1.1-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.12/1.1.1/scalastyle_2.12-1.1.1-assembly.jar)
-- [scalastyle_2.11-1.1.1-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.11/1.1.1/scalastyle_2.11-1.1.1-assembly.jar)
+- [scalastyle_2.13-{{site.version}}-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.13/{{site.version}}/scalastyle_2.13-{{site.version}}-assembly.jar)
+- [scalastyle_2.12-{{site.version}}-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.12/{{site.version}}/scalastyle_2.12-{{site.version}}-assembly.jar)
+- [scalastyle_2.11-{{site.version}}-assembly.jar](https://repo1.maven.org/maven2/com/beautiful-scala/scalastyle_2.11/{{site.version}}/scalastyle_2.11-{{site.version}}-assembly.jar)
 
 Execute the jar like:
 
-    $ java -jar scalastyle_2.13-1.1.1-assembly.jar -c scalastyle_config.xml src/main/scala
+    $ java -jar scalastyle_2.13-{{site.version}}-assembly.jar -c scalastyle_config.xml src/main/scala
 
 You'll need a [configuration](configuration.html).

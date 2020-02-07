@@ -83,7 +83,7 @@ be good to go.
 The command line has an extra parameter `--externalJar` or `-e`
 
 ```bash
-java -jar scalastyle_2.13-1.1.1-assembly.jar \
+java -jar scalastyle_2.13-{{site.version}}-assembly.jar \
   -c scalastyle_config.xml \
   --externalJar nofoobarchecker.jar \
   src/main/scala

@@ -1,3 +1,4 @@
 safe: true
 highlighter: rouge
 exclude: [publish.sh]
+version: "1.1.1"

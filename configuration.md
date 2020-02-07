@@ -6,7 +6,7 @@ title: "Scalastyle - Configuration"
 ### Quick start
 
 You can just use the default Scalastyle configuration
-[scalastyle_config.xml](https://raw.githubusercontent.com/beautiful-scala/scalastyle/v1.1.1/lib/scalastyle_config.xml).
+[scalastyle_config.xml](https://raw.githubusercontent.com/beautiful-scala/scalastyle/v{{site.version}}/lib/scalastyle_config.xml).
 Right-click this link and select `Save link as`. This is the one we use for
 Scalastyle development, so it's obviously the best :-)
 
@@ -29,7 +29,7 @@ source. A (short) example configuration would be:
 
 Each _check_ element is the name of the class which implements the checker along
 with any parameters. For a list of rules plus parameters, see
-[Implemented Rules](rules-1.1.1.html).
+[Implemented Rules](rules-{{site.version}}.html).
 
 ### Comment filters
 
