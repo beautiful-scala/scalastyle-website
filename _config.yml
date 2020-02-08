@@ -1,4 +1,9 @@
 safe: true
 highlighter: rouge
-exclude: [publish.sh]
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - include
+  - publish.sh
 version: "1.1.1"
