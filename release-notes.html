@@ -49,13 +49,13 @@
   <li>Cross compile for 2.13.
 (<a href="https://github.com/scalastyle/scalastyle/pull/353">#353</a> -
 <a href="https://github.comcddude229">@cddude229</a>)</li>
-  <li>Add CaseBraceChecker rule - braces aren’t required in <code class="highlighter-rouge">case</code> clauses.
+  <li>Add CaseBraceChecker rule - braces aren’t required in <code class="language-plaintext highlighter-rouge">case</code> clauses.
 (<a href="https://github.com/scalastyle/scalastyle/pull/305">#305</a> -
 <a href="https://github.comevis">@evis</a>)</li>
   <li>Add WhileBraceChecker rule - it’s recommended to never omit braces when using
-<code class="highlighter-rouge">while</code>. (<a href="https://github.com/scalastyle/scalastyle/pull/306">#306</a> -
+<code class="language-plaintext highlighter-rouge">while</code>. (<a href="https://github.com/scalastyle/scalastyle/pull/306">#306</a> -
 <a href="https://github.comevis">@evis</a>)</li>
-  <li>Add ForLoopChecker rule - omit braces if you have a <code class="highlighter-rouge">yield</code> clause, otherwise,
+  <li>Add ForLoopChecker rule - omit braces if you have a <code class="language-plaintext highlighter-rouge">yield</code> clause, otherwise,
 surround the contents with curly-braces, even if the contents are only a
 single line. (<a href="https://github.com/scalastyle/scalastyle/pull/303">#303</a> -
 <a href="https://github.comDarhazer">@Darhazer</a>)</li>
@@ -188,11 +188,11 @@ parameter list</li>
 <p>New parameters to existing checkers</p>
 
 <ul>
-  <li>RegexChecker has a <code class="highlighter-rouge">line</code> parameter which allows line by line regular
+  <li>RegexChecker has a <code class="language-plaintext highlighter-rouge">line</code> parameter which allows line by line regular
 expression matching</li>
-  <li>IndentationChecker has <code class="highlighter-rouge">methodParamIndentSize</code> parameter which allows
+  <li>IndentationChecker has <code class="language-plaintext highlighter-rouge">methodParamIndentSize</code> parameter which allows
 specification of the amount of indentation for multi-line method parameters</li>
-  <li>ScalaDocChecker has a <code class="highlighter-rouge">ignoreRegex</code> parameter into the ScalaDocChecker -
+  <li>ScalaDocChecker has a <code class="language-plaintext highlighter-rouge">ignoreRegex</code> parameter into the ScalaDocChecker -
 classes which match are not checked</li>
 </ul>
 
@@ -231,8 +231,8 @@ including #156</p>
 <p>Also:</p>
 
 <ul>
-  <li>Fix <code class="highlighter-rouge">SpacesAfterPlusChecker</code> - only applies to infix expressions #124</li>
-  <li>Fix <code class="highlighter-rouge">PublicMethodsHaveTypeChecker</code> should not flag nested defs #48</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">SpacesAfterPlusChecker</code> - only applies to infix expressions #124</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">PublicMethodsHaveTypeChecker</code> should not flag nested defs #48</li>
   <li>lots of documentation improvements</li>
   <li>maven plugin creates directories if necessary</li>
   <li>Add support for external rules #25 <a href="custom-rules.html">custom-rules</a></li>
@@ -251,7 +251,7 @@ including #156</p>
 
 <ul>
   <li>Support for 2.11</li>
-  <li>sbt plugin - support for <code class="highlighter-rouge">AutoPlugin</code> #21</li>
+  <li>sbt plugin - support for <code class="language-plaintext highlighter-rouge">AutoPlugin</code> #21</li>
   <li>sbt plugin - Add support for running scalastyle over test sources #27</li>
   <li>sbt plugin - Add support for remote config file (downloads once per day) #25</li>
   <li>sbt plugin - fix various logging issues #28</li>
@@ -259,7 +259,7 @@ including #156</p>
   <li>scalastyle-batch is now an uberjar, not a zip. See
 <a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/beautiful-scala/scalastyle_2.11/0.6.0/scalastyle_2.11-0.6.0-batch.jar">scalastyle-batch.jar</a></li>
   <li>Incorrect error messages from the sbt plugin #117</li>
-  <li>Fix <code class="highlighter-rouge">EnsureSingleSpaceAfterTokenChecker</code> when token is first one on line. #119</li>
+  <li>Fix <code class="language-plaintext highlighter-rouge">EnsureSingleSpaceAfterTokenChecker</code> when token is first one on line. #119</li>
   <li>Various bugfixes in the ScalaDocChecker</li>
 </ul>
 

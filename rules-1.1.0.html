@@ -602,7 +602,7 @@
 </ul>
 
 <h4 id="justification-9">Justification</h4>
-<p>Block imports (e.g. <code class="highlighter-rouge">import a.{b, c}</code>) can lead to annoying merge errors in large code bases that are maintained by lot of developers. This rule allows to ensure that only single imports are used in order to minimize merge errors in import declarations.</p>
+<p>Block imports (e.g. <code class="language-plaintext highlighter-rouge">import a.{b, c}</code>) can lead to annoying merge errors in large code bases that are maintained by lot of developers. This rule allows to ensure that only single imports are used in order to minimize merge errors in import declarations.</p>
 
 <h4 id="parameters-9">Parameters</h4>
 <p>No parameters</p>
@@ -949,7 +949,7 @@
 <h4 id="justification-24">Justification</h4>
 <p>Usage of braces (rather than parentheses) within a for comprehension mean that you don’t have to specify a semi-colon at the end of every line:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for {      // braces
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for {      // braces
   t &lt;- List(1,2,3)
   if (i % 2 == 0)
 } yield t
@@ -957,7 +957,7 @@
 
 <p>is preferred to</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (      // parentheses
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (      // parentheses
   t &lt;- List(1,2,3);
   if (i % 2 == 0)
 ) yield t
@@ -968,7 +968,7 @@
 <h4 id="description">Description</h4>
 <p>The singleLineAllowed property allows for constructions of the type:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (i &lt;- List(1,2,3)) yield i
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (i &lt;- List(1,2,3)) yield i
 </code></pre></div></div>
 
 <h4 id="parameters-24">Parameters</h4>
@@ -1034,18 +1034,18 @@
 <h4 id="description-1">Description</h4>
 <p>The singleLineAllowed property allows if constructions of the type:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1 else expression2
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1 else expression2
 </code></pre></div></div>
 
 <p>The doubleLineAllowed property allows if constructions of the type:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1
 else expression2
 </code></pre></div></div>
 
 <p>Note: If you intend to enable only if expressions in the format below, disable the IfBraceChecker altogether.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression)
   expression1
 else
   expression2
@@ -1153,7 +1153,7 @@ else
 <p>A lower case pattern match clause with no other tokens is the same as _; this is not true for patterns which start with an upper
   case letter. This can cause confusion, and may not be what was intended:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = "foo"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = "foo"
 val Bar = "bar"
 "bar" match { case Bar =&gt; "we got bar" }   // result = "we got bar"
 "bar" match { case foo =&gt; "we got foo" }   // result = "we got foo"
@@ -1161,9 +1161,9 @@ val Bar = "bar"
 </code></pre></div></div>
 
 <p>This checker raises a warning with the second match. To fix it, use an identifier which starts with an upper case letter (best), use case _ or,
-  if you wish to refer to the value, add a type <code class="highlighter-rouge">: Any</code></p>
+  if you wish to refer to the value, add a type <code class="language-plaintext highlighter-rouge">: Any</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val lc = "lc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val lc = "lc"
 "something" match { case lc: Any =&gt; "lc" } // result = "lc"
 "something" match { case _ =&gt; "lc" } // result = "lc"
 </code></pre></div></div>
@@ -1190,12 +1190,12 @@ val Bar = "bar"
 <h4 id="description-2">Description</h4>
 <p>A simple assignment to a val is not considered to be a magic number, for example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = 4
 </code></pre></div></div>
 
 <p>is not a magic number, but</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = 4
 </code></pre></div></div>
 
 <p>is considered to be a magic number.</p>
@@ -1364,7 +1364,7 @@ val Bar = "bar"
 </ul>
 
 <h4 id="justification-36">Justification</h4>
-<p>Nameless literals make code harder to understand (consider <code class="highlighter-rouge">updateEntity(1, true)</code> and <code class="highlighter-rouge">updateEntity(id = 1, enabled = true)</code>).</p>
+<p>Nameless literals make code harder to understand (consider <code class="language-plaintext highlighter-rouge">updateEntity(1, true)</code> and <code class="language-plaintext highlighter-rouge">updateEntity(id = 1, enabled = true)</code>).</p>
 
 <h4 id="parameters-36">Parameters</h4>
 <table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>checkString</td>
@@ -1496,7 +1496,7 @@ val Bar = "bar"
 <p>Scala allows unicode characters as operators and some editors misbehave when they see non-ascii character.
     In a project collaborated by a community of developers. This check can be helpful in such situations.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"value".match {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"value".match {
 case "value" =&gt; println("matched")
 ...
 }
@@ -1784,7 +1784,7 @@ To fix it, replace the (unicode operator)⇒ with =&gt;.
 <h4 id="justification-53">Justification</h4>
 <p>A procedure style declaration can cause confusion - the developer may have simply forgotten to add a ‘=’, and now their method returns Unit rather than the inferred type:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo() { println("hello"); 5 }
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo() { println("hello"); 5 }
 def foo() = { println("hello"); 5 }
 </code></pre></div></div>
 
@@ -1834,7 +1834,7 @@ def foo() = { println("hello"); 5 }
 </ul>
 
 <h4 id="justification-55">Justification</h4>
-<p>If expressions with boolean constants in both branches can be eliminated without affecting readability. Prefer simply <code class="highlighter-rouge">cond</code> to <code class="highlighter-rouge">if (cond) true else false</code> and <code class="highlighter-rouge">!cond</code> to <code class="highlighter-rouge">if (cond) false else true</code>.</p>
+<p>If expressions with boolean constants in both branches can be eliminated without affecting readability. Prefer simply <code class="language-plaintext highlighter-rouge">cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) true else false</code> and <code class="language-plaintext highlighter-rouge">!cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) false else true</code>.</p>
 
 <h4 id="parameters-55">Parameters</h4>
 <p>No parameters</p>
@@ -1939,19 +1939,19 @@ def foo() = { println("hello"); 5 }
 <h4 id="justification-59">Justification</h4>
 <p>To bring consistency with how comments should be formatted, leave a space right after the beginning of the comment.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">foobar</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package foobar
 
-<span class="n">object</span> <span class="n">Foobar</span> <span class="p">{</span>
-<span class="p">/**</span><span class="n">WRONG</span>
-<span class="p">*</span>
-<span class="p">*/</span>
-<span class="p">/**</span> <span class="n">Correct</span><span class="p">*/</span>
-<span class="n">val</span> <span class="n">d</span> <span class="p">=</span> <span class="m">2</span> <span class="p">/*</span><span class="n">Wrong</span><span class="p">*/</span> <span class="p">//</span><span class="n">Wrong</span>
-<span class="p">/**</span>
-<span class="p">*</span><span class="n">Correct</span>
-<span class="p">*/</span>
-<span class="n">val</span> <span class="n">e</span> <span class="p">=</span> <span class="m">3</span><span class="p">/**</span> <span class="n">Correct</span><span class="p">*/</span> <span class="p">//</span> <span class="n">Correct</span>
-<span class="p">}</span>
+object Foobar {
+/**WRONG
+*
+*/
+/** Correct*/
+val d = 2 /*Wrong*/ //Wrong
+/**
+*Correct
+*/
+val e = 3/** Correct*/ // Correct
+}
 </code></pre></div></div>
 
 <h4 id="parameters-59">Parameters</h4>

@@ -38,15 +38,15 @@ extendable Git hook manager that includes out-of-the-box support for running
 scalastyle as a Git pre-commit hook.</p>
 
 <p>To configure overcommit to run scalastyle, include the following in your
-<code class="highlighter-rouge">.overcommit.yml</code> file:</p>
+<code class="language-plaintext highlighter-rouge">.overcommit.yml</code> file:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PreCommit:
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PreCommit:
   Scalastyle:
     enabled: true
     flags: ['-c', 'path/to/scalastyle-config.xml']
 </code></pre></div></div>
 
-<p>This requires you to have a <code class="highlighter-rouge">scalastyle</code> executable on your PATH. See the
+<p>This requires you to have a <code class="language-plaintext highlighter-rouge">scalastyle</code> executable on your PATH. See the
 <a href="command-line.html">command line</a> documentation for more info.</p>
 
       </section>

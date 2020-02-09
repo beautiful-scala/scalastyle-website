@@ -43,7 +43,7 @@ support for Scalastyle.</p>
 
 <h3 id="setup">Setup</h3>
 
-<p>Add the following line to <code class="highlighter-rouge">project/plugins.sbt</code></p>
+<p>Add the following line to <code class="language-plaintext highlighter-rouge">project/plugins.sbt</code></p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addSbtPlugin</span><span class="o">(</span><span class="s">"com.beautiful-scala"</span> <span class="o">%</span> <span class="s">"sbt-scalastyle"</span> <span class="o">%</span> <span class="s">"1.1.0"</span><span class="o">)</span>
 </code></pre></div></div>
@@ -57,13 +57,13 @@ scalastyleGenerateConfig command:</p>
 </code></pre></div></div>
 
 <p>This will create a scalastyle-config.xml in the current directory, with the
-default settings. Then, you can check your code with the <code class="highlighter-rouge">scalastyle</code> command</p>
+default settings. Then, you can check your code with the <code class="language-plaintext highlighter-rouge">scalastyle</code> command</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbt scalastyle
 </code></pre></div></div>
 
 <p>This produces a list of errors on the console, as well as an XML result file
-<code class="highlighter-rouge">target/scalastyle-result.xml</code> (CheckStyle compatible format).</p>
+<code class="language-plaintext highlighter-rouge">target/scalastyle-result.xml</code> (CheckStyle compatible format).</p>
 
 <h3 id="configuration-options">Configuration options</h3>
 
@@ -79,17 +79,17 @@ default settings. Then, you can check your code with the <code class="highlighte
     <tr>
       <td>scalastyleTarget</td>
       <td style="text-align: left">File</td>
-      <td style="text-align: left">XML file containing the Scalastyle report. Default value is <code class="highlighter-rouge">target/scalastyle-result.xml</code></td>
+      <td style="text-align: left">XML file containing the Scalastyle report. Default value is <code class="language-plaintext highlighter-rouge">target/scalastyle-result.xml</code></td>
     </tr>
     <tr>
       <td>scalastyleConfig</td>
       <td style="text-align: left">File</td>
-      <td style="text-align: left">Scalastyle configuration. Default value is <code class="highlighter-rouge">scalastyle-config.xml</code></td>
+      <td style="text-align: left">Scalastyle configuration. Default value is <code class="language-plaintext highlighter-rouge">scalastyle-config.xml</code></td>
     </tr>
     <tr>
       <td>scalastyleConfigUrl</td>
       <td style="text-align: left">Option[URL]</td>
-      <td style="text-align: left">Scalastyle configuration URL. If this is Some(url), then this will be used in preference to the setting <code class="highlighter-rouge">scalastyleConfig</code>. It is downloaded and stored in the <code class="highlighter-rouge">target</code> directory, and refreshed every <code class="highlighter-rouge">scalastyleConfigRefreshHours</code> hours. Default value is <code class="highlighter-rouge">None</code>.</td>
+      <td style="text-align: left">Scalastyle configuration URL. If this is Some(url), then this will be used in preference to the setting <code class="language-plaintext highlighter-rouge">scalastyleConfig</code>. It is downloaded and stored in the <code class="language-plaintext highlighter-rouge">target</code> directory, and refreshed every <code class="language-plaintext highlighter-rouge">scalastyleConfigRefreshHours</code> hours. Default value is <code class="language-plaintext highlighter-rouge">None</code>.</td>
     </tr>
     <tr>
       <td>scalastyleConfigRefreshHours</td>
@@ -109,16 +109,16 @@ default settings. Then, you can check your code with the <code class="highlighte
     <tr>
       <td>scalastyleConfigUrlCacheFile</td>
       <td style="text-align: left">String</td>
-      <td style="text-align: left">When scalastyleConfigUrl is used, the name of the local file in which it is stored. Default is <code class="highlighter-rouge">target/scalastyle-config.xml</code></td>
+      <td style="text-align: left">When scalastyleConfigUrl is used, the name of the local file in which it is stored. Default is <code class="language-plaintext highlighter-rouge">target/scalastyle-config.xml</code></td>
     </tr>
   </tbody>
 </table>
 
-<p>If the remote source for your <code class="highlighter-rouge">scalastyle-config.xml</code> file is secured and
+<p>If the remote source for your <code class="language-plaintext highlighter-rouge">scalastyle-config.xml</code> file is secured and
 requires the passing of tokens in the header of the http request or ssh
 authentication then scalastyleConfigUrl will not suffice. A work around is to
-define your own update task and make scalastyle depend on it in your <code class="highlighter-rouge">build.sbt</code>
-or <code class="highlighter-rouge">Build.scala</code>.</p>
+define your own update task and make scalastyle depend on it in your <code class="language-plaintext highlighter-rouge">build.sbt</code>
+or <code class="language-plaintext highlighter-rouge">Build.scala</code>.</p>
 
 <p>This example use enterprise github (private repositories) through the REST API
 v3, bitbucket API to get raw files is similar:</p>
@@ -148,21 +148,21 @@ v3, bitbucket API to get raw files is similar:</p>
 <span class="o">(</span><span class="n">scalastyle</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">&lt;&lt;=</span> <span class="o">(</span><span class="n">scalastyle</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="n">dependsOn</span> <span class="n">updateScalaStyle</span>
 </code></pre></div></div>
 
-<p>NB: This uses <code class="highlighter-rouge">curl</code> so, while it works correctly on MacOS and Linux (or other
+<p>NB: This uses <code class="language-plaintext highlighter-rouge">curl</code> so, while it works correctly on MacOS and Linux (or other
 *NIX) it might give problem on windows environments.</p>
 
 <h3 id="running-scalastyle-on-your-test-sources">Running scalastyle on your test sources</h3>
 
-<p>You can check your test sources <code class="highlighter-rouge">(scalaSources in Test)</code> using the
-<code class="highlighter-rouge">test:scalastyle</code> command</p>
+<p>You can check your test sources <code class="language-plaintext highlighter-rouge">(scalaSources in Test)</code> using the
+<code class="language-plaintext highlighter-rouge">test:scalastyle</code> command</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbt <span class="nb">test</span>:scalastyle
 </code></pre></div></div>
 
 <p>This has exactly the same output as the scalastyle command, except that the
-generated XML file is <code class="highlighter-rouge">target/scalastyle-test-result.xml</code> by default. All of the
-configuration options for the <code class="highlighter-rouge">scalastyle</code> command are available in the Test
-configuration for <code class="highlighter-rouge">test:scalastyle</code>, but you need to use the <code class="highlighter-rouge">Test</code>
+generated XML file is <code class="language-plaintext highlighter-rouge">target/scalastyle-test-result.xml</code> by default. All of the
+configuration options for the <code class="language-plaintext highlighter-rouge">scalastyle</code> command are available in the Test
+configuration for <code class="language-plaintext highlighter-rouge">test:scalastyle</code>, but you need to use the <code class="language-plaintext highlighter-rouge">Test</code>
 configuration. For instance:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="n">scalastyleConfig</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="nv">baseDirectory</span><span class="o">.</span><span class="py">value</span> <span class="o">/</span> <span class="s">"scalastyle-test-config.xml"</span>
@@ -175,13 +175,13 @@ configuration. For instance:</p>
 <p>You can also have your scalastyle checks automatically run as part of another
 task:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a default Scala style task to run with tests</span>
-<span class="k">lazy</span> <span class="k">val</span> <span class="nv">testScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"testScalastyle"</span><span class="o">)</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a default Scala style task to run with tests
+</span><span class="k">lazy</span> <span class="k">val</span> <span class="nv">testScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"testScalastyle"</span><span class="o">)</span>
 
-<span class="c1">// scalastyle &gt;= 0.9.0</span>
-<span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
-<span class="c1">// scalastyle &lt;= 0.8.0</span>
-<span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &gt;= 0.9.0
+</span><span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &lt;= 0.8.0
+</span><span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
 
 <span class="o">(</span><span class="n">test</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="o">((</span><span class="n">test</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="n">dependsOn</span> <span class="n">testScalastyle</span><span class="o">).</span><span class="py">value</span>
 </code></pre></div></div>
@@ -190,10 +190,10 @@ task:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">lazy</span> <span class="k">val</span> <span class="nv">compileScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"compileScalastyle"</span><span class="o">)</span>
 
-<span class="c1">// scalastyle &gt;= 0.9.0</span>
-<span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
-<span class="c1">// scalastyle &lt;= 0.8.0</span>
-<span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &gt;= 0.9.0
+</span><span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &lt;= 0.8.0
+</span><span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
 
 <span class="o">(</span><span class="n">compile</span> <span class="n">in</span> <span class="nc">Compile</span><span class="o">)</span> <span class="o">:=</span> <span class="o">((</span><span class="n">compile</span> <span class="n">in</span> <span class="nc">Compile</span><span class="o">)</span> <span class="n">dependsOn</span> <span class="n">compileScalastyle</span><span class="o">).</span><span class="py">value</span>
 </code></pre></div></div>

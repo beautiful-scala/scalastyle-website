@@ -410,7 +410,7 @@
 <p>A lower case pattern match clause with no other tokens is the same as _; this is not true for patterns which start with an upper
   case letter. This can cause confusion, and may not be what was intended:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = "foo"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = "foo"
 val Bar = "bar"
 "bar" match { case Bar =&gt; "we got bar" }   // result = "we got bar"
 "bar" match { case foo =&gt; "we got foo" }   // result = "we got foo"
@@ -418,9 +418,9 @@ val Bar = "bar"
 </code></pre></div></div>
 
 <p>This checker raises a warning with the second match. To fix it, use an identifier which starts with an upper case letter (best), use case _ or,
-  if you wish to refer to the value, add a type <code class="highlighter-rouge">: Any</code></p>
+  if you wish to refer to the value, add a type <code class="language-plaintext highlighter-rouge">: Any</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val lc = "lc"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val lc = "lc"
 "something" match { case lc: Any =&gt; "lc" } // result = "lc"
 "something" match { case _ =&gt; "lc" } // result = "lc"
 </code></pre></div></div>
@@ -445,12 +445,12 @@ val Bar = "bar"
 <h4 id="description">Description</h4>
 <p>A simple assignment to a val is not considered to be a magic number, for example:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = 4
 </code></pre></div></div>
 
 <p>is not a magic number, but</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = 4
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = 4
 </code></pre></div></div>
 
 <p>is considered to be a magic number.</p>
@@ -785,7 +785,7 @@ val Bar = "bar"
 </ul>
 
 <h4 id="justification-19">Justification</h4>
-<p>If expressions with boolean constants in both branches can be eliminated without affecting readability. Prefer simply <code class="highlighter-rouge">cond</code> to <code class="highlighter-rouge">if (cond) true else false</code> and <code class="highlighter-rouge">!cond</code> to <code class="highlighter-rouge">if (cond) false else true</code>.</p>
+<p>If expressions with boolean constants in both branches can be eliminated without affecting readability. Prefer simply <code class="language-plaintext highlighter-rouge">cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) true else false</code> and <code class="language-plaintext highlighter-rouge">!cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) false else true</code>.</p>
 
 <h4 id="parameters-36">Parameters</h4>
 <p>No parameters</p>
