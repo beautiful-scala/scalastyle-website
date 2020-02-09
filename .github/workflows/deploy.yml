@@ -1,9 +1,11 @@
-name: PR
+name: deploy
 on:
-  pull_request:
+  push:
+    branches:
+      - master
 jobs:
-  pr:
-    name: PR
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,3 +24,10 @@ jobs:
           bundle config path vendor/bundle
           bundle install
           bundle exec jekyll build -tV
+          cp -R include/* _site/
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./_site
+          commit_message: Deploy website based on ${{ github.sha }}
