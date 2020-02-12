@@ -31,7 +31,38 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1 id="version-111">Version 1.1.1</h1>
+        <h1 id="version-120">Version 1.2.0</h1>
+
+<p>Fixes and improvements</p>
+
+<ul>
+  <li>Standardise on one default Scalastyle config file -
+<a href="https://github.com/beautiful-scala/scalastyle/blob/v1.2.0/src/main/resources/default_config.xml"><code class="language-plaintext highlighter-rouge">src/main/resources/default_config.xml</code></a>.
+(<a href="https://github.com/beautiful-scala/scalastyle/pull/11">#11</a> -
+<a href="https://github.com/mwz">@mwz</a>)</li>
+  <li>Fix an issue where having a <code class="language-plaintext highlighter-rouge">CDATA</code> section on a new line in the config file
+would cause runtime errors.
+(<a href="https://github.com/beautiful-scala/scalastyle/pull/11">#11</a> -
+<a href="https://github.com/mwz">@mwz</a>)</li>
+</ul>
+
+<p>SBT</p>
+
+<ul>
+  <li>Make the <code class="language-plaintext highlighter-rouge">scalastyleGenerateConfig</code> task use the default config from
+Scalastyle. (<a href="https://github.com/beautiful-scala/sbt-scalastyle/pull/5">#5</a> -
+<a href="https://github.com/mwz">@mwz</a>)</li>
+  <li>Log the versions of scalastyle and sbt-scalastyle when executing the
+<code class="language-plaintext highlighter-rouge">scalastyle</code> task.
+(<a href="https://github.com/beautiful-scala/sbt-scalastyle/pull/5">#5</a> -
+<a href="https://github.com/mwz">@mwz</a>)</li>
+  <li>Remove the prompt asking the user to confirm whether to overwrite
+<code class="language-plaintext highlighter-rouge">scalastyle-config.xml</code> file when executing the <code class="language-plaintext highlighter-rouge">scalastyleGenerateConfig</code>
+task. (<a href="https://github.com/beautiful-scala/sbt-scalastyle/pull/5">#5</a> -
+<a href="https://github.com/mwz">@mwz</a>)</li>
+</ul>
+
+<h1 id="version-111">Version 1.1.1</h1>
 
 <p>Fixes</p>
 

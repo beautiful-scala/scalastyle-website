@@ -98,7 +98,7 @@ maven plugin configuration or your command line.</p>
 <p>sbt is easy. You can add the jar as a normal library dependency into your
 <code class="language-plaintext highlighter-rouge">project/plugins.sbt</code>:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addSbtPlugin</span><span class="o">(</span><span class="s">"com.beautiful-scala"</span> <span class="o">%%</span> <span class="s">"sbt-scalastyle"</span> <span class="o">%</span> <span class="s">"1.1.0"</span><span class="o">)</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addSbtPlugin</span><span class="o">(</span><span class="s">"com.beautiful-scala"</span> <span class="o">%%</span> <span class="s">"sbt-scalastyle"</span> <span class="o">%</span> <span class="s">"1.2.0"</span><span class="o">)</span>
 <span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"org.ext"</span> <span class="o">%%</span> <span class="s">"nofoobarchecker"</span> <span class="o">%</span> <span class="s">"1.0.0"</span>
 </code></pre></div></div>
 
@@ -109,7 +109,7 @@ be good to go.</p>
 
 <p>The command line has an extra parameter <code class="language-plaintext highlighter-rouge">--externalJar</code> or <code class="language-plaintext highlighter-rouge">-e</code></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> scalastyle_2.13-1.1.1-assembly.jar <span class="se">\</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> scalastyle_2.13-1.2.0-assembly.jar <span class="se">\</span>
   <span class="nt">-c</span> scalastyle_config.xml <span class="se">\</span>
   <span class="nt">--externalJar</span> nofoobarchecker.jar <span class="se">\</span>
   src/main/scala

@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Scalastyle: Implemented Rules" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="stylesheets/stylesheet.css"
+    />
+
+    <title>Scalastyle: Implemented Rules</title>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a
+          id="forkme_banner"
+          href="https://github.com/beautiful-scala/scalastyle"
+          >View on GitHub</a
+        >
+
+        <h1 id="project_title">Scalastyle: Implemented Rules</h1>
+      </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>There are 72 rules which are currently implemented:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Checker</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#org_scalastyle_file_FileLengthChecker">org.scalastyle.file.FileLengthChecker</a></td>
+      <td>Check the number of lines in a file</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_FileLineLengthChecker">org.scalastyle.file.FileLineLengthChecker</a></td>
+      <td>Check the number of characters in a line</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_FileTabChecker">org.scalastyle.file.FileTabChecker</a></td>
+      <td>Check that there are no tabs in a file</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_HeaderMatchesChecker">org.scalastyle.file.HeaderMatchesChecker</a></td>
+      <td>Check the first lines of each file matches the text</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_IndentationChecker">org.scalastyle.file.IndentationChecker</a></td>
+      <td>Checks that lines are indented by a multiple of the tab size</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_NewLineAtEofChecker">org.scalastyle.file.NewLineAtEofChecker</a></td>
+      <td>Checks that a file ends with a newline character</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_NoNewLineAtEofChecker">org.scalastyle.file.NoNewLineAtEofChecker</a></td>
+      <td>Checks that a file does not end with a newline character</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_RegexChecker">org.scalastyle.file.RegexChecker</a></td>
+      <td>Checks that a regular expression cannot be matched, if found reports this</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_file_WhitespaceEndOfLineChecker">org.scalastyle.file.WhitespaceEndOfLineChecker</a></td>
+      <td>Check that there is no trailing whitespace at the end of lines</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_BlockImportChecker">org.scalastyle.scalariform.BlockImportChecker</a></td>
+      <td>Checks that block imports are not used.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_CaseBraceChecker">org.scalastyle.scalariform.CaseBraceChecker</a></td>
+      <td>Checks that braces aren’t used in case clauses</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ClassNamesChecker">org.scalastyle.scalariform.ClassNamesChecker</a></td>
+      <td>Check that class names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ClassTypeParameterChecker">org.scalastyle.scalariform.ClassTypeParameterChecker</a></td>
+      <td>Checks that type parameter to a class matches a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_CovariantEqualsChecker">org.scalastyle.scalariform.CovariantEqualsChecker</a></td>
+      <td>Check that classes and objects do not define equals without overriding equals(java.lang.Object).</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_CyclomaticComplexityChecker">org.scalastyle.scalariform.CyclomaticComplexityChecker</a></td>
+      <td>Checks that the cyclomatic complexity of a method does exceed a value</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_DeprecatedJavaChecker">org.scalastyle.scalariform.DeprecatedJavaChecker</a></td>
+      <td>Checks that Java @Deprecated is not used, Scala @deprecated should be used instead</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_DisallowSpaceAfterTokenChecker">org.scalastyle.scalariform.DisallowSpaceAfterTokenChecker</a></td>
+      <td>Disallow space after certain token(s)</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_DisallowSpaceBeforeTokenChecker">org.scalastyle.scalariform.DisallowSpaceBeforeTokenChecker</a></td>
+      <td>Disallow space before certain token(s)</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_EmptyClassChecker">org.scalastyle.scalariform.EmptyClassChecker</a></td>
+      <td>If a class/trait has no members, the braces are unnecessary</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_EmptyInterpolatedStringChecker">org.scalastyle.scalariform.EmptyInterpolatedStringChecker</a></td>
+      <td>The interpolation for this string literal is not necessary</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_EnsureSingleSpaceAfterTokenChecker">org.scalastyle.scalariform.EnsureSingleSpaceAfterTokenChecker</a></td>
+      <td>Ensure single space after certain token(s)</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_EnsureSingleSpaceBeforeTokenChecker">org.scalastyle.scalariform.EnsureSingleSpaceBeforeTokenChecker</a></td>
+      <td>Ensure single space before certain token(s)</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_EqualsHashCodeChecker">org.scalastyle.scalariform.EqualsHashCodeChecker</a></td>
+      <td>Check that if a class implements either equals or hashCode, it should implement the other</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_FieldNamesChecker">org.scalastyle.scalariform.FieldNamesChecker</a></td>
+      <td>Check that field names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ForBraceChecker">org.scalastyle.scalariform.ForBraceChecker</a></td>
+      <td>Checks that braces are used in for comprehensions</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ForLoopChecker">org.scalastyle.scalariform.ForLoopChecker</a></td>
+      <td>Checks that parentheses are used in for loops</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_IfBraceChecker">org.scalastyle.scalariform.IfBraceChecker</a></td>
+      <td>Checks that if statements have braces</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_IllegalImportsChecker">org.scalastyle.scalariform.IllegalImportsChecker</a></td>
+      <td>Check that a class does not import certain classes</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ImportGroupingChecker">org.scalastyle.scalariform.ImportGroupingChecker</a></td>
+      <td>Checks that imports are grouped together, not throughout the file</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ImportOrderChecker">org.scalastyle.scalariform.ImportOrderChecker</a></td>
+      <td>Checks that imports are grouped and ordered according to the style configuration.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_LowercasePatternMatchChecker">org.scalastyle.scalariform.LowercasePatternMatchChecker</a></td>
+      <td>Checks that a case statement pattern match is not lower case, as this can cause confusion</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_MagicNumberChecker">org.scalastyle.scalariform.MagicNumberChecker</a></td>
+      <td>Checks for use of magic numbers</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_MethodArgumentNamesChecker">org.scalastyle.scalariform.MethodArgumentNamesChecker</a></td>
+      <td>Check that method argument names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_MethodLengthChecker">org.scalastyle.scalariform.MethodLengthChecker</a></td>
+      <td>Checks that methods do not exceed a maximum length</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_MethodNamesChecker">org.scalastyle.scalariform.MethodNamesChecker</a></td>
+      <td>Check that method names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_MultipleStringLiteralsChecker">org.scalastyle.scalariform.MultipleStringLiteralsChecker</a></td>
+      <td>Checks that a string literal does not appear multiple times</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NamedArgumentChecker">org.scalastyle.scalariform.NamedArgumentChecker</a></td>
+      <td>Checks that argument literals are named</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NoCloneChecker">org.scalastyle.scalariform.NoCloneChecker</a></td>
+      <td>Check that classes and objects do not define the clone() method</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NoFinalizeChecker">org.scalastyle.scalariform.NoFinalizeChecker</a></td>
+      <td>Check that classes and objects do not define the finalize() method</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NoWhitespaceAfterLeftBracketChecker">org.scalastyle.scalariform.NoWhitespaceAfterLeftBracketChecker</a></td>
+      <td>No whitespace after left bracket ‘[’</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NoWhitespaceBeforeLeftBracketChecker">org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker</a></td>
+      <td>No whitespace before left bracket ‘[’</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NoWhitespaceBeforeRightBracketChecker">org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker</a></td>
+      <td>No whitespace before right bracket ‘’]’’</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NonASCIICharacterChecker">org.scalastyle.scalariform.NonASCIICharacterChecker</a></td>
+      <td>Some editors are unfriendly to non ASCII characters.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NotImplementedErrorUsage">org.scalastyle.scalariform.NotImplementedErrorUsage</a></td>
+      <td>Checks that the code does not have ??? operators.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NullChecker">org.scalastyle.scalariform.NullChecker</a></td>
+      <td>Check that null is not used</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NumberOfMethodsInTypeChecker">org.scalastyle.scalariform.NumberOfMethodsInTypeChecker</a></td>
+      <td>Check that a class / trait / object does not have too many methods</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_NumberOfTypesChecker">org.scalastyle.scalariform.NumberOfTypesChecker</a></td>
+      <td>Checks that there are not too many types declared in a file</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ObjectNamesChecker">org.scalastyle.scalariform.ObjectNamesChecker</a></td>
+      <td>Check that object names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_OverrideJavaChecker">org.scalastyle.scalariform.OverrideJavaChecker</a></td>
+      <td>Checks that Java @Override is not used</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_PackageNamesChecker">org.scalastyle.scalariform.PackageNamesChecker</a></td>
+      <td>Check that package names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_PackageObjectNamesChecker">org.scalastyle.scalariform.PackageObjectNamesChecker</a></td>
+      <td>Check that package object names match a regular expression</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ParameterNumberChecker">org.scalastyle.scalariform.ParameterNumberChecker</a></td>
+      <td>Maximum number of parameters for a method</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_PatternMatchAlignChecker">org.scalastyle.scalariform.PatternMatchAlignChecker</a></td>
+      <td>Check that pattern match arrows align</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ProcedureDeclarationChecker">org.scalastyle.scalariform.ProcedureDeclarationChecker</a></td>
+      <td>Use a : Unit = for procedure declarations</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_PublicMethodsHaveTypeChecker">org.scalastyle.scalariform.PublicMethodsHaveTypeChecker</a></td>
+      <td>Check that a method has an explicit return type, it is not inferred</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_RedundantIfChecker">org.scalastyle.scalariform.RedundantIfChecker</a></td>
+      <td>Checks that if expressions are not redundant, i.e. easily replaced by a variant of the condition</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ReturnChecker">org.scalastyle.scalariform.ReturnChecker</a></td>
+      <td>Check that return is not used</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_ScalaDocChecker">org.scalastyle.scalariform.ScalaDocChecker</a></td>
+      <td>Checks that the ScalaDoc on documentable members is well-formed</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_SimplifyBooleanExpressionChecker">org.scalastyle.scalariform.SimplifyBooleanExpressionChecker</a></td>
+      <td>Boolean expression can be simplified</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_SpaceAfterCommentStartChecker">org.scalastyle.scalariform.SpaceAfterCommentStartChecker</a></td>
+      <td>Checks a space after the start of the comment.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_SpacesAfterPlusChecker">org.scalastyle.scalariform.SpacesAfterPlusChecker</a></td>
+      <td>Check that the plus sign is followed by a space</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_SpacesBeforePlusChecker">org.scalastyle.scalariform.SpacesBeforePlusChecker</a></td>
+      <td>Check that the plus sign is preceded by a space</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_StructuralTypeChecker">org.scalastyle.scalariform.StructuralTypeChecker</a></td>
+      <td>Check that structural types are not used.</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_TodoCommentChecker">org.scalastyle.scalariform.TodoCommentChecker</a></td>
+      <td>Check for use of TODO/FIXME single line comments</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_TokenChecker">org.scalastyle.scalariform.TokenChecker</a></td>
+      <td>Checks that a regular expression cannot be matched in a token, if found reports this</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_UnderscoreImportChecker">org.scalastyle.scalariform.UnderscoreImportChecker</a></td>
+      <td>Avoid wildcard imports</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_UppercaseLChecker">org.scalastyle.scalariform.UppercaseLChecker</a></td>
+      <td>Checks that if a long literal is used, then an uppercase L is used</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_VarFieldChecker">org.scalastyle.scalariform.VarFieldChecker</a></td>
+      <td>Checks that classes and objects do not define mutable fields</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_VarLocalChecker">org.scalastyle.scalariform.VarLocalChecker</a></td>
+      <td>Checks that functions do not define mutable variables</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_WhileBraceChecker">org.scalastyle.scalariform.WhileBraceChecker</a></td>
+      <td>Checks that while body have braces</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_WhileChecker">org.scalastyle.scalariform.WhileChecker</a></td>
+      <td>Checks that while is not used</td>
+    </tr>
+    <tr>
+      <td><a href="#org_scalastyle_scalariform_XmlLiteralChecker">org.scalastyle.scalariform.XmlLiteralChecker</a></td>
+      <td>Check that XML literals are not used</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a name="org_scalastyle_file_FileLengthChecker"></a></p>
+
+<h3 id="orgscalastylefilefilelengthchecker---check-the-number-of-lines-in-a-file">org.scalastyle.file.FileLengthChecker - Check the number of lines in a file</h3>
+
+<ul>
+  <li>id - file.size.limit</li>
+  <li>description - Check the number of lines in a file</li>
+  <li>class - org.scalastyle.file.FileLengthChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification">Justification</h4>
+<p>Files which are too long can be hard to read and understand.</p>
+
+<h4 id="parameters">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxFileLength</td>
+        <td>Maximum file length</td>
+        <td>integer</td>
+        <td>1500</td>
+      </tr></table>
+
+<h3 id="example-configuration">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.FileLengthChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxFileLength&quot;&gt;800&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_file_FileLineLengthChecker"></a></p>
+
+<h3 id="orgscalastylefilefilelinelengthchecker---check-the-number-of-characters-in-a-line">org.scalastyle.file.FileLineLengthChecker - Check the number of characters in a line</h3>
+
+<ul>
+  <li>id - line.size.limit</li>
+  <li>description - Check the number of characters in a line</li>
+  <li>class - org.scalastyle.file.FileLineLengthChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-1">Justification</h4>
+<p>Lines that are too long can be hard to read and horizontal scrolling is annoying.</p>
+
+<h4 id="parameters-1">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxLineLength</td>
+        <td>Maximum line length</td>
+        <td>integer</td>
+        <td>160</td>
+      </tr><tr><td>tabSize</td>
+        <td>Tab size</td>
+        <td>integer</td>
+        <td>4</td>
+      </tr><tr><td>ignoreImports</td>
+        <td>Ignore import statements</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-1">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.FileLineLengthChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxLineLength&quot;&gt;100&lt;/parameter&gt;
+  &lt;parameter name=&quot;tabSize&quot;&gt;2&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreImports&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_file_FileTabChecker"></a></p>
+
+<h3 id="orgscalastylefilefiletabchecker---check-that-there-are-no-tabs-in-a-file">org.scalastyle.file.FileTabChecker - Check that there are no tabs in a file</h3>
+
+<ul>
+  <li>id - line.contains.tab</li>
+  <li>description - Check that there are no tabs in a file</li>
+  <li>class - org.scalastyle.file.FileTabChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-2">Justification</h4>
+<p>Some say that tabs are evil.</p>
+
+<h4 id="parameters-2">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-2">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.FileTabChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_file_HeaderMatchesChecker"></a></p>
+
+<h3 id="orgscalastylefileheadermatcheschecker---check-the-first-lines-of-each-file-matches-the-text">org.scalastyle.file.HeaderMatchesChecker - Check the first lines of each file matches the text</h3>
+
+<ul>
+  <li>id - header.matches</li>
+  <li>description - Check the first lines of each file matches the text</li>
+  <li>class - org.scalastyle.file.HeaderMatchesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-3">Justification</h4>
+<p>A lot of projects require a header with a copyright notice, or they require a license in each file. This does a simple text comparison between the header and the first lines of the file.
+  You can have multiple lines, but make sure you surround the text with a CDATA section. You can also specify a regular expression, as long as you set the regex parameter to true.</p>
+
+<h4 id="parameters-3">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>header</td>
+        <td>Header</td>
+        <td>string</td>
+        <td></td>
+      </tr><tr><td>regex</td>
+        <td>Header Regex</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-3">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.HeaderMatchesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;false&lt;/parameter&gt;
+  &lt;parameter name=&quot;header&quot;&gt;// Copyright \(C\) 2011-2012 the original author or authors.&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p>or</p>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.HeaderMatchesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;true&lt;/parameter&gt;
+  &lt;parameter name=&quot;header&quot;&gt;// Copyright \(C\) (?:\d{4}-)?\d{4} the original author or authors.&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_file_IndentationChecker"></a></p>
+
+<h3 id="orgscalastylefileindentationchecker---checks-that-lines-are-indented-by-a-multiple-of-the-tab-size">org.scalastyle.file.IndentationChecker - Checks that lines are indented by a multiple of the tab size</h3>
+
+<ul>
+  <li>id - indentation</li>
+  <li>description - Checks that lines are indented by a multiple of the tab size</li>
+  <li>class - org.scalastyle.file.IndentationChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-4">Justification</h4>
+<p>Code that is not indented consistently can be hard to read.</p>
+
+<h4 id="parameters-4">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>tabSize</td>
+        <td>Tab size</td>
+        <td>integer</td>
+        <td>2</td>
+      </tr><tr><td>methodParamIndentSize</td>
+        <td>Multi-line method parameter spacing</td>
+        <td>integer</td>
+        <td>2</td>
+      </tr><tr><td>classParamIndentSize</td>
+        <td>Multi-line class parameter spacing</td>
+        <td>integer</td>
+        <td>4</td>
+      </tr></table>
+
+<h3 id="example-configuration-4">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.IndentationChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;tabSize&quot;&gt;2&lt;/parameter&gt;
+  &lt;parameter name=&quot;methodParamIndentSize&quot;&gt;2&lt;/parameter&gt;
+  &lt;parameter name=&quot;classParamIndentSize&quot;&gt;4&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_file_NewLineAtEofChecker"></a></p>
+
+<h3 id="orgscalastylefilenewlineateofchecker---checks-that-a-file-ends-with-a-newline-character">org.scalastyle.file.NewLineAtEofChecker - Checks that a file ends with a newline character</h3>
+
+<ul>
+  <li>id - newline.at.eof</li>
+  <li>description - Checks that a file ends with a newline character</li>
+  <li>class - org.scalastyle.file.NewLineAtEofChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-5">Justification</h4>
+<p>Some version control systems don’t cope well with files which don’t end with a newline character.</p>
+
+<h4 id="parameters-5">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-5">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.NewLineAtEofChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_file_NoNewLineAtEofChecker"></a></p>
+
+<h3 id="orgscalastylefilenonewlineateofchecker---checks-that-a-file-does-not-end-with-a-newline-character">org.scalastyle.file.NoNewLineAtEofChecker - Checks that a file does not end with a newline character</h3>
+
+<ul>
+  <li>id - no.newline.at.eof</li>
+  <li>description - Checks that a file does not end with a newline character</li>
+  <li>class - org.scalastyle.file.NoNewLineAtEofChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-6">Justification</h4>
+<p>Because Mirco Dotta wanted it.</p>
+
+<h4 id="parameters-6">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-6">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.NoNewLineAtEofChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_file_RegexChecker"></a></p>
+
+<h3 id="orgscalastylefileregexchecker---checks-that-a-regular-expression-cannot-be-matched-if-found-reports-this">org.scalastyle.file.RegexChecker - Checks that a regular expression cannot be matched, if found reports this</h3>
+
+<ul>
+  <li>id - regex</li>
+  <li>description - Checks that a regular expression cannot be matched, if found reports this</li>
+  <li>class - org.scalastyle.file.RegexChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-7">Justification</h4>
+<p>Some checks can be carried out with a regular expression.</p>
+
+<h4 id="parameters-7">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td></td>
+      </tr><tr><td>line</td>
+        <td>Line</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-7">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.RegexChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;(?m)^\s*$(\r|)\n^\s*$(\r|)\n&lt;/parameter&gt;
+  &lt;parameter name=&quot;line&quot;&gt;false&lt;/parameter&gt;
+ &lt;/parameters&gt;
+ &lt;customMessage&gt;No double blank lines&lt;/customMessage&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_file_WhitespaceEndOfLineChecker"></a></p>
+
+<h3 id="orgscalastylefilewhitespaceendoflinechecker---check-that-there-is-no-trailing-whitespace-at-the-end-of-lines">org.scalastyle.file.WhitespaceEndOfLineChecker - Check that there is no trailing whitespace at the end of lines</h3>
+
+<ul>
+  <li>id - whitespace.end.of.line</li>
+  <li>description - Check that there is no trailing whitespace at the end of lines</li>
+  <li>class - org.scalastyle.file.WhitespaceEndOfLineChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-8">Justification</h4>
+<p>Whitespace at the end of a line can cause problems when diffing between files or between versions.</p>
+
+<h4 id="parameters-8">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>ignoreWhitespaceLines</td>
+        <td>Ignore lines with just whitespace</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-8">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.file.WhitespaceEndOfLineChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter default=&quot;false&quot; type=&quot;boolean&quot; name=&quot;ignoreWhitespaceLines&quot;/&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_BlockImportChecker"></a></p>
+
+<h3 id="orgscalastylescalariformblockimportchecker---checks-that-block-imports-are-not-used">org.scalastyle.scalariform.BlockImportChecker - Checks that block imports are not used.</h3>
+
+<ul>
+  <li>id - block.import</li>
+  <li>description - Checks that block imports are not used.</li>
+  <li>class - org.scalastyle.scalariform.BlockImportChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-9">Justification</h4>
+<p>Block imports (e.g. <code class="language-plaintext highlighter-rouge">import a.{b, c}</code>) can lead to annoying merge errors in large code bases that are maintained by lot of developers. This rule allows to ensure that only single imports are used in order to minimize merge errors in import declarations.</p>
+
+<h4 id="parameters-9">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-9">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.BlockImportChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_CaseBraceChecker"></a></p>
+
+<h3 id="orgscalastylescalariformcasebracechecker---checks-that-braces-arent-used-in-case-clauses">org.scalastyle.scalariform.CaseBraceChecker - Checks that braces aren’t used in case clauses</h3>
+
+<ul>
+  <li>id - disallow.case.brace</li>
+  <li>description - Checks that braces aren’t used in case clauses</li>
+  <li>class - org.scalastyle.scalariform.CaseBraceChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-10">Justification</h4>
+<p>Braces aren’t required in case clauses. They should be omitted according to Scala Style Guide.</p>
+
+<h4 id="parameters-10">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-10">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; level=&quot;warning&quot; class=&quot;org.scalastyle.scalariform.CaseBraceChecker&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ClassNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformclassnameschecker---check-that-class-names-match-a-regular-expression">org.scalastyle.scalariform.ClassNamesChecker - Check that class names match a regular expression</h3>
+
+<ul>
+  <li>id - class.name</li>
+  <li>description - Check that class names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.ClassNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-11">Justification</h4>
+<p>The Scala style guide recommends that class names conform to certain standards.</p>
+
+<h4 id="parameters-11">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[A-Z][A-Za-z]*$</td>
+      </tr></table>
+
+<h3 id="example-configuration-11">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ClassNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[A-Z][A-Za-z]*$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ClassTypeParameterChecker"></a></p>
+
+<h3 id="orgscalastylescalariformclasstypeparameterchecker---checks-that-type-parameter-to-a-class-matches-a-regular-expression">org.scalastyle.scalariform.ClassTypeParameterChecker - Checks that type parameter to a class matches a regular expression</h3>
+
+<ul>
+  <li>id - class.type.parameter.name</li>
+  <li>description - Checks that type parameter to a class matches a regular expression</li>
+  <li>class - org.scalastyle.scalariform.ClassTypeParameterChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-12">Justification</h4>
+<p>Scala generic type names are generally single upper case letters. This check checks for classes and traits.</p>
+
+<p>Note that this check only checks the innermost type parameter, to allow for List[T].</p>
+
+<h4 id="parameters-12">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[A-Z_]$</td>
+      </tr></table>
+
+<h3 id="example-configuration-12">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ClassTypeParameterChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[A-Z_]$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_CovariantEqualsChecker"></a></p>
+
+<h3 id="orgscalastylescalariformcovariantequalschecker---check-that-classes-and-objects-do-not-define-equals-without-overriding-equalsjavalangobject">org.scalastyle.scalariform.CovariantEqualsChecker - Check that classes and objects do not define equals without overriding equals(java.lang.Object).</h3>
+
+<ul>
+  <li>id - covariant.equals</li>
+  <li>description - Check that classes and objects do not define equals without overriding equals(java.lang.Object).</li>
+  <li>class - org.scalastyle.scalariform.CovariantEqualsChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-13">Justification</h4>
+<p>Mistakenly defining a covariant equals() method without overriding method equals(java.lang.Object) can produce unexpected runtime behaviour.</p>
+
+<h4 id="parameters-13">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-13">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.CovariantEqualsChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_CyclomaticComplexityChecker"></a></p>
+
+<h3 id="orgscalastylescalariformcyclomaticcomplexitychecker---checks-that-the-cyclomatic-complexity-of-a-method-does-exceed-a-value">org.scalastyle.scalariform.CyclomaticComplexityChecker - Checks that the cyclomatic complexity of a method does exceed a value</h3>
+
+<ul>
+  <li>id - cyclomatic.complexity</li>
+  <li>description - Checks that the cyclomatic complexity of a method does exceed a value</li>
+  <li>class - org.scalastyle.scalariform.CyclomaticComplexityChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-14">Justification</h4>
+<p>If the code is too complex, then this can make code hard to read.</p>
+
+<h4 id="parameters-14">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maximum</td>
+        <td>Maximum</td>
+        <td>integer</td>
+        <td>10</td>
+      </tr><tr><td>countCases</td>
+        <td>Count Cases</td>
+        <td>boolean</td>
+        <td>true</td>
+      </tr></table>
+
+<h3 id="example-configuration-14">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.CyclomaticComplexityChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maximum&quot;&gt;10&lt;/parameter&gt;
+  &lt;parameter name=&quot;countCases&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_DeprecatedJavaChecker"></a></p>
+
+<h3 id="orgscalastylescalariformdeprecatedjavachecker---checks-that-java-deprecated-is-not-used-scala-deprecated-should-be-used-instead">org.scalastyle.scalariform.DeprecatedJavaChecker - Checks that Java @Deprecated is not used, Scala @deprecated should be used instead</h3>
+
+<ul>
+  <li>id - deprecated.java</li>
+  <li>description - Checks that Java @Deprecated is not used, Scala @deprecated should be used instead</li>
+  <li>class - org.scalastyle.scalariform.DeprecatedJavaChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-15">Justification</h4>
+<p>You should be using the Scala @deprecated instead.</p>
+
+<h4 id="parameters-15">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-15">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.DeprecatedJavaChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_DisallowSpaceAfterTokenChecker"></a></p>
+
+<h3 id="orgscalastylescalariformdisallowspaceaftertokenchecker---disallow-space-after-certain-tokens">org.scalastyle.scalariform.DisallowSpaceAfterTokenChecker - Disallow space after certain token(s)</h3>
+
+<ul>
+  <li>id - disallow.space.after.token</li>
+  <li>description - Disallow space after certain token(s)</li>
+  <li>class - org.scalastyle.scalariform.DisallowSpaceAfterTokenChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-16">Justification</h4>
+<p>Correct formatting can help readability.</p>
+
+<h4 id="parameters-16">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-16">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.DisallowSpaceAfterTokenChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;tokens&quot;&gt;LPAREN&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_DisallowSpaceBeforeTokenChecker"></a></p>
+
+<h3 id="orgscalastylescalariformdisallowspacebeforetokenchecker---disallow-space-before-certain-tokens">org.scalastyle.scalariform.DisallowSpaceBeforeTokenChecker - Disallow space before certain token(s)</h3>
+
+<ul>
+  <li>id - disallow.space.before.token</li>
+  <li>description - Disallow space before certain token(s)</li>
+  <li>class - org.scalastyle.scalariform.DisallowSpaceBeforeTokenChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-17">Justification</h4>
+<p>Correct formatting can help readability.</p>
+
+<h4 id="parameters-17">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-17">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.DisallowSpaceBeforeTokenChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;tokens&quot;&gt;COLON, COMMA, RPAREN&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_EmptyClassChecker"></a></p>
+
+<h3 id="orgscalastylescalariformemptyclasschecker---if-a-classtrait-has-no-members-the-braces-are-unnecessary">org.scalastyle.scalariform.EmptyClassChecker - If a class/trait has no members, the braces are unnecessary</h3>
+
+<ul>
+  <li>id - empty.class</li>
+  <li>description - If a class/trait has no members, the braces are unnecessary</li>
+  <li>class - org.scalastyle.scalariform.EmptyClassChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-18">Justification</h4>
+<p>If a class / trait has no members, then braces are unnecessary, and can be removed.</p>
+
+<h4 id="parameters-18">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-18">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.EmptyClassChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_EmptyInterpolatedStringChecker"></a></p>
+
+<h3 id="orgscalastylescalariformemptyinterpolatedstringchecker---the-interpolation-for-this-string-literal-is-not-necessary">org.scalastyle.scalariform.EmptyInterpolatedStringChecker - The interpolation for this string literal is not necessary</h3>
+
+<ul>
+  <li>id - empty.interpolated.strings</li>
+  <li>description - The interpolation for this string literal is not necessary</li>
+  <li>class - org.scalastyle.scalariform.EmptyInterpolatedStringChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-19">Justification</h4>
+<p>Empty interpolated strings are harder to read and not necessary.</p>
+
+<h4 id="parameters-19">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-19">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; level=&quot;warning&quot; class=&quot;org.scalastyle.scalariform.EmptyInterpolatedStringChecker&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_EnsureSingleSpaceAfterTokenChecker"></a></p>
+
+<h3 id="orgscalastylescalariformensuresinglespaceaftertokenchecker---ensure-single-space-after-certain-tokens">org.scalastyle.scalariform.EnsureSingleSpaceAfterTokenChecker - Ensure single space after certain token(s)</h3>
+
+<ul>
+  <li>id - ensure.single.space.after.token</li>
+  <li>description - Ensure single space after certain token(s)</li>
+  <li>class - org.scalastyle.scalariform.EnsureSingleSpaceAfterTokenChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-20">Justification</h4>
+<p>Correct formatting can help readability.</p>
+
+<h4 id="parameters-20">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-20">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.EnsureSingleSpaceAfterTokenChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;tokens&quot;&gt;COLON, IF&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_EnsureSingleSpaceBeforeTokenChecker"></a></p>
+
+<h3 id="orgscalastylescalariformensuresinglespacebeforetokenchecker---ensure-single-space-before-certain-tokens">org.scalastyle.scalariform.EnsureSingleSpaceBeforeTokenChecker - Ensure single space before certain token(s)</h3>
+
+<ul>
+  <li>id - ensure.single.space.before.token</li>
+  <li>description - Ensure single space before certain token(s)</li>
+  <li>class - org.scalastyle.scalariform.EnsureSingleSpaceBeforeTokenChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-21">Justification</h4>
+<p>Correct formatting can help readability.</p>
+
+<h4 id="parameters-21">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-21">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.EnsureSingleSpaceBeforeTokenChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;tokens&quot;&gt;LPAREN&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_EqualsHashCodeChecker"></a></p>
+
+<h3 id="orgscalastylescalariformequalshashcodechecker---check-that-if-a-class-implements-either-equals-or-hashcode-it-should-implement-the-other">org.scalastyle.scalariform.EqualsHashCodeChecker - Check that if a class implements either equals or hashCode, it should implement the other</h3>
+
+<ul>
+  <li>id - equals.hash.code</li>
+  <li>description - Check that if a class implements either equals or hashCode, it should implement the other</li>
+  <li>class - org.scalastyle.scalariform.EqualsHashCodeChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-22">Justification</h4>
+<p>Defining either equals or hashCode in a class without defining the is a known source of bugs. Usually, when you define one, you should also define the other.</p>
+
+<h4 id="parameters-22">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-22">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.EqualsHashCodeChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_FieldNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformfieldnameschecker---check-that-field-names-match-a-regular-expression">org.scalastyle.scalariform.FieldNamesChecker - Check that field names match a regular expression</h3>
+
+<ul>
+  <li>id - field.name</li>
+  <li>description - Check that field names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.FieldNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-23">Justification</h4>
+<p>A consistent naming convention for field names can make code easier to read and understand</p>
+
+<h4 id="parameters-23">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[a-z][A-Za-z0-9]*$</td>
+      </tr><tr><td>objectFieldRegex</td>
+        <td>Regular expression for constants</td>
+        <td>string</td>
+        <td>^[A-Z][A-Za-z0-9]*$</td>
+      </tr></table>
+
+<h3 id="example-configuration-23">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.FieldNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[a-z][A-Za-z0-9]*$&lt;/parameter&gt;
+  &lt;parameter name=&quot;objectFieldRegex&quot;&gt;^[A-Z][A-Za-z0-9]*$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ForBraceChecker"></a></p>
+
+<h3 id="orgscalastylescalariformforbracechecker---checks-that-braces-are-used-in-for-comprehensions">org.scalastyle.scalariform.ForBraceChecker - Checks that braces are used in for comprehensions</h3>
+
+<ul>
+  <li>id - for.brace</li>
+  <li>description - Checks that braces are used in for comprehensions</li>
+  <li>class - org.scalastyle.scalariform.ForBraceChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-24">Justification</h4>
+<p>Usage of braces (rather than parentheses) within a for comprehension mean that you don’t have to specify a semi-colon at the end of every line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for {      // braces
+  t &lt;- List(1,2,3)
+  if (i % 2 == 0)
+} yield t
+</code></pre></div></div>
+
+<p>is preferred to</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (      // parentheses
+  t &lt;- List(1,2,3);
+  if (i % 2 == 0)
+) yield t
+</code></pre></div></div>
+
+<p>To fix it, replace the () with {}. And then remove the ; at the end of the lines.</p>
+
+<h4 id="description">Description</h4>
+<p>The singleLineAllowed property allows for constructions of the type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (i &lt;- List(1,2,3)) yield i
+</code></pre></div></div>
+
+<h4 id="parameters-24">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>singleLineAllowed</td>
+        <td>Allow parentheses for single-line for</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-24">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ForBraceChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;singleLineAllowed&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ForLoopChecker"></a></p>
+
+<h3 id="orgscalastylescalariformforloopchecker---checks-that-parentheses-are-used-in-for-loops">org.scalastyle.scalariform.ForLoopChecker - Checks that parentheses are used in for loops</h3>
+
+<ul>
+  <li>id - for.loop</li>
+  <li>description - Checks that parentheses are used in for loops</li>
+  <li>class - org.scalastyle.scalariform.ForLoopChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-25">Justification</h4>
+<p>For-comprehensions which lack a yield clause is actually a loop rather than a functional comprehension and it is usually
+   more readable to string the generators together between parentheses rather than using the syntactically-confusing } { construct:</p>
+
+<p>for (x &lt;- board.rows; y &lt;- board.files) {
+     printf(“(%d, %d)”, x, y)
+   }</p>
+
+<p>is preferred to</p>
+
+<p>for {
+     x &lt;- board.rows
+     y &lt;- board.files
+   } {
+     printf(“(%d, %d)”, x, y)
+   }</p>
+
+<h4 id="parameters-25">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-25">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ForLoopChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_IfBraceChecker"></a></p>
+
+<h3 id="orgscalastylescalariformifbracechecker---checks-that-if-statements-have-braces">org.scalastyle.scalariform.IfBraceChecker - Checks that if statements have braces</h3>
+
+<ul>
+  <li>id - if.brace</li>
+  <li>description - Checks that if statements have braces</li>
+  <li>class - org.scalastyle.scalariform.IfBraceChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-26">Justification</h4>
+<p>Some people find if clauses with braces easier to read.</p>
+
+<h4 id="description-1">Description</h4>
+<p>The singleLineAllowed property allows if constructions of the type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1 else expression2
+</code></pre></div></div>
+
+<p>The doubleLineAllowed property allows if constructions of the type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression) expression1
+else expression2
+</code></pre></div></div>
+
+<p>Note: If you intend to enable only if expressions in the format below, disable the IfBraceChecker altogether.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (bool_expression)
+  expression1
+else
+  expression2
+</code></pre></div></div>
+
+<h4 id="parameters-26">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>singleLineAllowed</td>
+        <td>Single Line Allowed</td>
+        <td>boolean</td>
+        <td>true</td>
+      </tr><tr><td>doubleLineAllowed</td>
+        <td>Double Line Allowed</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-26">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.IfBraceChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;singleLineAllowed&quot;&gt;true&lt;/parameter&gt;
+  &lt;parameter name=&quot;doubleLineAllowed&quot;&gt;false&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_IllegalImportsChecker"></a></p>
+
+<h3 id="orgscalastylescalariformillegalimportschecker---check-that-a-class-does-not-import-certain-classes">org.scalastyle.scalariform.IllegalImportsChecker - Check that a class does not import certain classes</h3>
+
+<ul>
+  <li>id - illegal.imports</li>
+  <li>description - Check that a class does not import certain classes</li>
+  <li>class - org.scalastyle.scalariform.IllegalImportsChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-27">Justification</h4>
+<p>Use of some classes can be discouraged for a project. For instance, use of sun._ is generally discouraged because
+ they are internal to the JDK and can be changed.</p>
+
+<h4 id="parameters-27">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>illegalImports</td>
+        <td>Illegal Imports</td>
+        <td>string</td>
+        <td>sun._,java.awt._</td>
+      </tr></table>
+
+<h3 id="example-configuration-27">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.IllegalImportsChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ImportGroupingChecker"></a></p>
+
+<h3 id="orgscalastylescalariformimportgroupingchecker---checks-that-imports-are-grouped-together-not-throughout-the-file">org.scalastyle.scalariform.ImportGroupingChecker - Checks that imports are grouped together, not throughout the file</h3>
+
+<ul>
+  <li>id - import.grouping</li>
+  <li>description - Checks that imports are grouped together, not throughout the file</li>
+  <li>class - org.scalastyle.scalariform.ImportGroupingChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-28">Justification</h4>
+<p>If imports are spread throughout the file, knowing what is in scope at any one place can be difficult to work out.</p>
+
+<h4 id="parameters-28">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-28">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ImportGroupingChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ImportOrderChecker"></a></p>
+
+<h3 id="orgscalastylescalariformimportorderchecker---checks-that-imports-are-grouped-and-ordered-according-to-the-style-configuration">org.scalastyle.scalariform.ImportOrderChecker - Checks that imports are grouped and ordered according to the style configuration.</h3>
+
+<ul>
+  <li>id - import.ordering</li>
+  <li>description - Checks that imports are grouped and ordered according to the style configuration.</li>
+  <li>class - org.scalastyle.scalariform.ImportOrderChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-29">Justification</h4>
+<p>Consistent import ordering improves code readability and reduces unrelated changes in patches.</p>
+
+<h4 id="parameters-29">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-29">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ImportOrderChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;groups&quot;&gt;java,scala,others&lt;/parameter&gt;
+  &lt;parameter name=&quot;group.java&quot;&gt;javax?\..+&lt;/parameter&gt;
+  &lt;parameter name=&quot;group.scala&quot;&gt;scala\..+&lt;/parameter&gt;
+  &lt;parameter name=&quot;group.others&quot;&gt;.+&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_LowercasePatternMatchChecker"></a></p>
+
+<h3 id="orgscalastylescalariformlowercasepatternmatchchecker---checks-that-a-case-statement-pattern-match-is-not-lower-case-as-this-can-cause-confusion">org.scalastyle.scalariform.LowercasePatternMatchChecker - Checks that a case statement pattern match is not lower case, as this can cause confusion</h3>
+
+<ul>
+  <li>id - lowercase.pattern.match</li>
+  <li>description - Checks that a case statement pattern match is not lower case, as this can cause confusion</li>
+  <li>class - org.scalastyle.scalariform.LowercasePatternMatchChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-30">Justification</h4>
+<p>A lower case pattern match clause with no other tokens is the same as _; this is not true for patterns which start with an upper
+  case letter. This can cause confusion, and may not be what was intended:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = "foo"
+val Bar = "bar"
+"bar" match { case Bar =&gt; "we got bar" }   // result = "we got bar"
+"bar" match { case foo =&gt; "we got foo" }   // result = "we got foo"
+"bar" match { case `foo` =&gt; "we got foo" } // result = MatchError
+</code></pre></div></div>
+
+<p>This checker raises a warning with the second match. To fix it, use an identifier which starts with an upper case letter (best), use case _ or,
+  if you wish to refer to the value, add a type <code class="language-plaintext highlighter-rouge">: Any</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val lc = "lc"
+"something" match { case lc: Any =&gt; "lc" } // result = "lc"
+"something" match { case _ =&gt; "lc" } // result = "lc"
+</code></pre></div></div>
+
+<h4 id="parameters-30">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-30">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.LowercasePatternMatchChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_MagicNumberChecker"></a></p>
+
+<h3 id="orgscalastylescalariformmagicnumberchecker---checks-for-use-of-magic-numbers">org.scalastyle.scalariform.MagicNumberChecker - Checks for use of magic numbers</h3>
+
+<ul>
+  <li>id - magic.number</li>
+  <li>description - Checks for use of magic numbers</li>
+  <li>class - org.scalastyle.scalariform.MagicNumberChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-31">Justification</h4>
+<p>Replacing a magic number with a named constant can make code easier to read and understand, and can avoid some subtle bugs.</p>
+
+<h4 id="description-2">Description</h4>
+<p>A simple assignment to a val is not considered to be a magic number, for example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val foo = 4
+</code></pre></div></div>
+
+<p>is not a magic number, but</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var foo = 4
+</code></pre></div></div>
+
+<p>is considered to be a magic number.</p>
+
+<h4 id="parameters-31">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>ignore</td>
+        <td>Ignore</td>
+        <td>string</td>
+        <td>-1,0,1,2</td>
+      </tr></table>
+
+<h3 id="example-configuration-31">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.MagicNumberChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;ignore&quot;&gt;-1,0,1,2,3&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_MethodArgumentNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformmethodargumentnameschecker---check-that-method-argument-names-match-a-regular-expression">org.scalastyle.scalariform.MethodArgumentNamesChecker - Check that method argument names match a regular expression</h3>
+
+<ul>
+  <li>id - method.argument.name</li>
+  <li>description - Check that method argument names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.MethodArgumentNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-32">Justification</h4>
+<p>The Scala style guide recommends that method argument names conform to certain standards.</p>
+
+<h4 id="parameters-32">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[a-z][A-Za-z0-9]*$</td>
+      </tr><tr><td>ignoreRegex</td>
+        <td>Regular expression to ignore</td>
+        <td>string</td>
+        <td>^$</td>
+      </tr></table>
+
+<h3 id="example-configuration-32">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.MethodArgumentNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[a-z][A-Za-z0-9]*$&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreRegex&quot;&gt;^$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_MethodLengthChecker"></a></p>
+
+<h3 id="orgscalastylescalariformmethodlengthchecker---checks-that-methods-do-not-exceed-a-maximum-length">org.scalastyle.scalariform.MethodLengthChecker - Checks that methods do not exceed a maximum length</h3>
+
+<ul>
+  <li>id - method.length</li>
+  <li>description - Checks that methods do not exceed a maximum length</li>
+  <li>class - org.scalastyle.scalariform.MethodLengthChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-33">Justification</h4>
+<p>Long methods can be hard to read and understand.</p>
+
+<h4 id="parameters-33">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxLength</td>
+        <td>Maximum length</td>
+        <td>integer</td>
+        <td>50</td>
+      </tr><tr><td>ignoreComments</td>
+        <td>Ignore comments</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr><tr><td>ignoreEmpty</td>
+        <td>Ignore empty lines</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-33">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.MethodLengthChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxLength&quot;&gt;50&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreComments&quot;&gt;false&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreEmpty&quot;&gt;false&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_MethodNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformmethodnameschecker---check-that-method-names-match-a-regular-expression">org.scalastyle.scalariform.MethodNamesChecker - Check that method names match a regular expression</h3>
+
+<ul>
+  <li>id - method.name</li>
+  <li>description - Check that method names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.MethodNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-34">Justification</h4>
+<p>The Scala style guide recommends that method names conform to certain standards. If the methods are overriding another method, and the overridden method
+ cannot be changed, then use the ignoreOverride parameter.</p>
+
+<h4 id="parameters-34">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[a-z][A-Za-z0-9]*(_=)?$</td>
+      </tr><tr><td>ignoreRegex</td>
+        <td>Regular expression to ignore</td>
+        <td>string</td>
+        <td>^$</td>
+      </tr><tr><td>ignoreOverride</td>
+        <td>Ignore override</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-34">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.MethodNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[A-Za-z]*$&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreRegex&quot;&gt;^.*$&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreOverride&quot;&gt;false&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_MultipleStringLiteralsChecker"></a></p>
+
+<h3 id="orgscalastylescalariformmultiplestringliteralschecker---checks-that-a-string-literal-does-not-appear-multiple-times">org.scalastyle.scalariform.MultipleStringLiteralsChecker - Checks that a string literal does not appear multiple times</h3>
+
+<ul>
+  <li>id - multiple.string.literals</li>
+  <li>description - Checks that a string literal does not appear multiple times</li>
+  <li>class - org.scalastyle.scalariform.MultipleStringLiteralsChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-35">Justification</h4>
+<p>Code duplication makes maintenance more difficult, so it can be better to replace the multiple occurrences with a constant.</p>
+
+<h4 id="parameters-35">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>allowed</td>
+        <td>Maximum occurences allowed</td>
+        <td>integer</td>
+        <td>1</td>
+      </tr><tr><td>ignoreRegex</td>
+        <td>Ignore regular expression</td>
+        <td>string</td>
+        <td>^&quot;&quot;$</td>
+      </tr></table>
+
+<h3 id="example-configuration-35">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.MultipleStringLiteralsChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;allowed&quot;&gt;1&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreRegex&quot;&gt;^\&amp;quot;\&amp;quot;$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NamedArgumentChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnamedargumentchecker---checks-that-argument-literals-are-named">org.scalastyle.scalariform.NamedArgumentChecker - Checks that argument literals are named</h3>
+
+<ul>
+  <li>id - named.argument</li>
+  <li>description - Checks that argument literals are named</li>
+  <li>class - org.scalastyle.scalariform.NamedArgumentChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-36">Justification</h4>
+<p>Nameless literals make code harder to understand (consider <code class="language-plaintext highlighter-rouge">updateEntity(1, true)</code> and <code class="language-plaintext highlighter-rouge">updateEntity(id = 1, enabled = true)</code>).</p>
+
+<h4 id="parameters-36">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>checkString</td>
+        <td>Check string literals</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr><tr><td>ignoreMethod</td>
+        <td>Ignore methods by pattern</td>
+        <td>string</td>
+        <td>^set.+$</td>
+      </tr></table>
+
+<h3 id="example-configuration-36">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NamedArgumentChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;checkString&quot;&gt;false&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreMethod&quot;&gt;^set.+$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NoCloneChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnoclonechecker---check-that-classes-and-objects-do-not-define-the-clone-method">org.scalastyle.scalariform.NoCloneChecker - Check that classes and objects do not define the clone() method</h3>
+
+<ul>
+  <li>id - no.clone</li>
+  <li>description - Check that classes and objects do not define the clone() method</li>
+  <li>class - org.scalastyle.scalariform.NoCloneChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-37">Justification</h4>
+<p>The clone method is difficult to get right. You can use the copy constructor of case classes rather than implementing clone.
+  For more information on clone(), see Effective Java by Joshua Bloch pages.</p>
+
+<h4 id="parameters-37">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-37">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoCloneChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NoFinalizeChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnofinalizechecker---check-that-classes-and-objects-do-not-define-the-finalize-method">org.scalastyle.scalariform.NoFinalizeChecker - Check that classes and objects do not define the finalize() method</h3>
+
+<ul>
+  <li>id - no.finalize</li>
+  <li>description - Check that classes and objects do not define the finalize() method</li>
+  <li>class - org.scalastyle.scalariform.NoFinalizeChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-38">Justification</h4>
+<p>finalize() is called when the object is garbage collected, and garbage collection is not guaranteed to happen.
+ It is therefore unwise to rely on code in finalize() method.</p>
+
+<h4 id="parameters-38">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-38">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoFinalizeChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NoWhitespaceAfterLeftBracketChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnowhitespaceafterleftbracketchecker---no-whitespace-after-left-bracket-">org.scalastyle.scalariform.NoWhitespaceAfterLeftBracketChecker - No whitespace after left bracket ‘[’</h3>
+
+<ul>
+  <li>id - no.whitespace.after.left.bracket</li>
+  <li>description - No whitespace after left bracket ‘[’</li>
+  <li>class - org.scalastyle.scalariform.NoWhitespaceAfterLeftBracketChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-39">Justification</h4>
+<p>If there is whitespace after a left bracket, this can be confusing to the reader</p>
+
+<h4 id="parameters-39">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-39">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoWhitespaceAfterLeftBracketChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NoWhitespaceBeforeLeftBracketChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnowhitespacebeforeleftbracketchecker---no-whitespace-before-left-bracket-">org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker - No whitespace before left bracket ‘[’</h3>
+
+<ul>
+  <li>id - no.whitespace.before.left.bracket</li>
+  <li>description - No whitespace before left bracket ‘[’</li>
+  <li>class - org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-40">Justification</h4>
+<p>If there is whitespace before a left bracket, this can be confusing to the reader</p>
+
+<h4 id="parameters-40">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-40">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NoWhitespaceBeforeRightBracketChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnowhitespacebeforerightbracketchecker---no-whitespace-before-right-bracket-">org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker - No whitespace before right bracket ‘’]’’</h3>
+
+<ul>
+  <li>id - no.whitespace.before.right.bracket</li>
+  <li>description - No whitespace before right bracket ‘’]’’</li>
+  <li>class - org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-41">Justification</h4>
+<p>If there is whitespace before a right bracket, this can be confusing to the reader</p>
+
+<h4 id="parameters-41">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-41">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NoWhitespaceBeforeRightBracketChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NonASCIICharacterChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnonasciicharacterchecker---some-editors-are-unfriendly-to-non-ascii-characters">org.scalastyle.scalariform.NonASCIICharacterChecker - Some editors are unfriendly to non ASCII characters.</h3>
+
+<ul>
+  <li>id - non.ascii.character.disallowed</li>
+  <li>description - Some editors are unfriendly to non ASCII characters.</li>
+  <li>class - org.scalastyle.scalariform.NonASCIICharacterChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-42">Justification</h4>
+<p>Scala allows unicode characters as operators and some editors misbehave when they see non-ascii character.
+    In a project collaborated by a community of developers. This check can be helpful in such situations.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"value".match {
+case "value" =&gt; println("matched")
+...
+}
+
+is preferred to
+
+"value".match {
+case "value" ⇒ println("matched")
+...
+}
+
+To fix it, replace the (unicode operator)⇒ with =&gt;.
+</code></pre></div></div>
+
+<h4 id="parameters-42">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>allowStringLiterals</td>
+        <td>Allow non-ASCII scripts in string literals.</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-42">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NonASCIICharacterChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;allowStringLiterals&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NotImplementedErrorUsage"></a></p>
+
+<h3 id="orgscalastylescalariformnotimplementederrorusage---checks-that-the-code-does-not-have--operators">org.scalastyle.scalariform.NotImplementedErrorUsage - Checks that the code does not have ??? operators.</h3>
+
+<ul>
+  <li>id - not.implemented.error.usage</li>
+  <li>description - Checks that the code does not have ??? operators.</li>
+  <li>class - org.scalastyle.scalariform.NotImplementedErrorUsage</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-43">Justification</h4>
+<p>The ??? operator denotes that an implementation is missing. This rule helps to avoid potential runtime errors because of not implemented code.</p>
+
+<h4 id="parameters-43">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-43">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NotImplementedErrorUsage&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NullChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnullchecker---check-that-null-is-not-used">org.scalastyle.scalariform.NullChecker - Check that null is not used</h3>
+
+<ul>
+  <li>id - null</li>
+  <li>description - Check that null is not used</li>
+  <li>class - org.scalastyle.scalariform.NullChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-44">Justification</h4>
+<p>Scala discourages use of nulls, preferring Option.</p>
+
+<h4 id="parameters-44">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>allowNullChecks</td>
+        <td>Allow null checks</td>
+        <td>boolean</td>
+        <td>true</td>
+      </tr></table>
+
+<h3 id="example-configuration-44">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NullChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;allowNullChecks&quot;&gt;true&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NumberOfMethodsInTypeChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnumberofmethodsintypechecker---check-that-a-class--trait--object-does-not-have-too-many-methods">org.scalastyle.scalariform.NumberOfMethodsInTypeChecker - Check that a class / trait / object does not have too many methods</h3>
+
+<ul>
+  <li>id - number.of.methods</li>
+  <li>description - Check that a class / trait / object does not have too many methods</li>
+  <li>class - org.scalastyle.scalariform.NumberOfMethodsInTypeChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-45">Justification</h4>
+<p>If a type declares too many methods, this can be an indication of bad design.</p>
+
+<h4 id="parameters-45">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxMethods</td>
+        <td>Maximum methods</td>
+        <td>integer</td>
+        <td>30</td>
+      </tr></table>
+
+<h3 id="example-configuration-45">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NumberOfMethodsInTypeChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxMethods&quot;&gt;30&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_NumberOfTypesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformnumberoftypeschecker---checks-that-there-are-not-too-many-types-declared-in-a-file">org.scalastyle.scalariform.NumberOfTypesChecker - Checks that there are not too many types declared in a file</h3>
+
+<ul>
+  <li>id - number.of.types</li>
+  <li>description - Checks that there are not too many types declared in a file</li>
+  <li>class - org.scalastyle.scalariform.NumberOfTypesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-46">Justification</h4>
+<p>If there are too many classes/objects defined in a single file, this can cause the code to be difficult to understand.</p>
+
+<h4 id="parameters-46">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxTypes</td>
+        <td>Maximum Number</td>
+        <td>integer</td>
+        <td>20</td>
+      </tr></table>
+
+<h3 id="example-configuration-46">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.NumberOfTypesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxTypes&quot;&gt;20&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ObjectNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformobjectnameschecker---check-that-object-names-match-a-regular-expression">org.scalastyle.scalariform.ObjectNamesChecker - Check that object names match a regular expression</h3>
+
+<ul>
+  <li>id - object.name</li>
+  <li>description - Check that object names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.ObjectNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-47">Justification</h4>
+<p>The Scala style guide recommends that object names conform to certain standards.</p>
+
+<h4 id="parameters-47">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[A-Z][A-Za-z]*$</td>
+      </tr></table>
+
+<h3 id="example-configuration-47">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ObjectNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[A-Z][A-Za-z]*$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_OverrideJavaChecker"></a></p>
+
+<h3 id="orgscalastylescalariformoverridejavachecker---checks-that-java-override-is-not-used">org.scalastyle.scalariform.OverrideJavaChecker - Checks that Java @Override is not used</h3>
+
+<ul>
+  <li>id - override.java</li>
+  <li>description - Checks that Java @Override is not used</li>
+  <li>class - org.scalastyle.scalariform.OverrideJavaChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-48">Justification</h4>
+<p>You should be using the Scala override keyword instead.</p>
+
+<h4 id="parameters-48">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-48">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.OverrideJavaChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_PackageNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformpackagenameschecker---check-that-package-names-match-a-regular-expression">org.scalastyle.scalariform.PackageNamesChecker - Check that package names match a regular expression</h3>
+
+<ul>
+  <li>id - package.name</li>
+  <li>description - Check that package names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.PackageNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-49">Justification</h4>
+<p>The Scala style guide recommends that package names conform to certain standards.</p>
+
+<h4 id="parameters-49">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[a-z][A-Za-z]*$</td>
+      </tr></table>
+
+<h3 id="example-configuration-49">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.PackageNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[a-z][A-Za-z]*$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_PackageObjectNamesChecker"></a></p>
+
+<h3 id="orgscalastylescalariformpackageobjectnameschecker---check-that-package-object-names-match-a-regular-expression">org.scalastyle.scalariform.PackageObjectNamesChecker - Check that package object names match a regular expression</h3>
+
+<ul>
+  <li>id - package.object.name</li>
+  <li>description - Check that package object names match a regular expression</li>
+  <li>class - org.scalastyle.scalariform.PackageObjectNamesChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-50">Justification</h4>
+<p>The Scala style guide recommends that package object names conform to certain standards.</p>
+
+<h4 id="parameters-50">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^[a-z][A-Za-z]*$</td>
+      </tr></table>
+
+<h3 id="example-configuration-50">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.PackageObjectNamesChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[a-z][A-Za-z]*$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ParameterNumberChecker"></a></p>
+
+<h3 id="orgscalastylescalariformparameternumberchecker---maximum-number-of-parameters-for-a-method">org.scalastyle.scalariform.ParameterNumberChecker - Maximum number of parameters for a method</h3>
+
+<ul>
+  <li>id - parameter.number</li>
+  <li>description - Maximum number of parameters for a method</li>
+  <li>class - org.scalastyle.scalariform.ParameterNumberChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-51">Justification</h4>
+<p>A method which has more than a certain number of parameters can be hard to understand.</p>
+
+<h4 id="parameters-51">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>maxParameters</td>
+        <td>Maximum Number</td>
+        <td>integer</td>
+        <td>8</td>
+      </tr></table>
+
+<h3 id="example-configuration-51">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ParameterNumberChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;maxParameters&quot;&gt;8&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_PatternMatchAlignChecker"></a></p>
+
+<h3 id="orgscalastylescalariformpatternmatchalignchecker---check-that-pattern-match-arrows-align">org.scalastyle.scalariform.PatternMatchAlignChecker - Check that pattern match arrows align</h3>
+
+<ul>
+  <li>id - pattern.match.align</li>
+  <li>description - Check that pattern match arrows align</li>
+  <li>class - org.scalastyle.scalariform.PatternMatchAlignChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-52">Justification</h4>
+<p>Correct formatting can help readability.</p>
+
+<h4 id="parameters-52">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-52">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.PatternMatchAlignChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ProcedureDeclarationChecker"></a></p>
+
+<h3 id="orgscalastylescalariformproceduredeclarationchecker---use-a--unit--for-procedure-declarations">org.scalastyle.scalariform.ProcedureDeclarationChecker - Use a : Unit = for procedure declarations</h3>
+
+<ul>
+  <li>id - procedure.declaration</li>
+  <li>description - Use a : Unit = for procedure declarations</li>
+  <li>class - org.scalastyle.scalariform.ProcedureDeclarationChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-53">Justification</h4>
+<p>A procedure style declaration can cause confusion - the developer may have simply forgotten to add a ‘=’, and now their method returns Unit rather than the inferred type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def foo() { println("hello"); 5 }
+def foo() = { println("hello"); 5 }
+</code></pre></div></div>
+
+<p>This checker raises a warning with the first line. To fix it, use an explicit return type, or add a ‘=’ before the body.</p>
+
+<h4 id="parameters-53">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-53">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ProcedureDeclarationChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_PublicMethodsHaveTypeChecker"></a></p>
+
+<h3 id="orgscalastylescalariformpublicmethodshavetypechecker---check-that-a-method-has-an-explicit-return-type-it-is-not-inferred">org.scalastyle.scalariform.PublicMethodsHaveTypeChecker - Check that a method has an explicit return type, it is not inferred</h3>
+
+<ul>
+  <li>id - public.methods.have.type</li>
+  <li>description - Check that a method has an explicit return type, it is not inferred</li>
+  <li>class - org.scalastyle.scalariform.PublicMethodsHaveTypeChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-54">Justification</h4>
+<p>A public method declared on a type is effectively an API declaration. Explicitly declaring a return type means that other code which depends on that type won’t break unexpectedly.</p>
+
+<h4 id="parameters-54">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>ignoreOverride</td>
+        <td>Ignore overridden methods</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr></table>
+
+<h3 id="example-configuration-54">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.PublicMethodsHaveTypeChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;ignoreOverride&quot;&gt;false&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_RedundantIfChecker"></a></p>
+
+<h3 id="orgscalastylescalariformredundantifchecker---checks-that-if-expressions-are-not-redundant-ie-easily-replaced-by-a-variant-of-the-condition">org.scalastyle.scalariform.RedundantIfChecker - Checks that if expressions are not redundant, i.e. easily replaced by a variant of the condition</h3>
+
+<ul>
+  <li>id - if.redundant</li>
+  <li>description - Checks that if expressions are not redundant, i.e. easily replaced by a variant of the condition</li>
+  <li>class - org.scalastyle.scalariform.RedundantIfChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-55">Justification</h4>
+<p>If expressions with boolean constants in both branches can be eliminated without affecting readability. Prefer simply <code class="language-plaintext highlighter-rouge">cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) true else false</code> and <code class="language-plaintext highlighter-rouge">!cond</code> to <code class="language-plaintext highlighter-rouge">if (cond) false else true</code>.</p>
+
+<h4 id="parameters-55">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-55">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.RedundantIfChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ReturnChecker"></a></p>
+
+<h3 id="orgscalastylescalariformreturnchecker---check-that-return-is-not-used">org.scalastyle.scalariform.ReturnChecker - Check that return is not used</h3>
+
+<ul>
+  <li>id - return</li>
+  <li>description - Check that return is not used</li>
+  <li>class - org.scalastyle.scalariform.ReturnChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-56">Justification</h4>
+<p>Use of return is not usually necessary in Scala. In fact, use of return can discourage a functional style of programming.</p>
+
+<h4 id="parameters-56">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-56">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ReturnChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_ScalaDocChecker"></a></p>
+
+<h3 id="orgscalastylescalariformscaladocchecker---checks-that-the-scaladoc-on-documentable-members-is-well-formed">org.scalastyle.scalariform.ScalaDocChecker - Checks that the ScalaDoc on documentable members is well-formed</h3>
+
+<ul>
+  <li>id - scaladoc</li>
+  <li>description - Checks that the ScalaDoc on documentable members is well-formed</li>
+  <li>class - org.scalastyle.scalariform.ScalaDocChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-57">Justification</h4>
+<p>Scaladoc is generally considered a good thing. Within reason.</p>
+
+<h4 id="description-3">Description</h4>
+<p>Ignore tokens is a comma separated string that may include the following : PatDefOrDcl (variables), TmplDef (classes, traits), TypeDefOrDcl (type definitions), FunDefOrDcl (functions)
+ Supported indentation styles are “scaladoc” (for ScalaDoc-style comments, with two spaces before the asterisk), “javadoc” (for JavaDoc-style comments, with a single space before the asterisk) or “anydoc” to support any style (any number of spaces before the asterisk). For backwards compatibility, if left empty, “anydoc” will be assumed.</p>
+
+<h4 id="parameters-57">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>ignoreRegex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^$</td>
+      </tr><tr><td>ignoreTokenTypes</td>
+        <td>Comma Separated String</td>
+        <td>string</td>
+        <td>^$</td>
+      </tr><tr><td>ignoreOverride</td>
+        <td>Ignore override</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr><tr><td>indentStyle</td>
+        <td>Force indent style</td>
+        <td>string</td>
+        <td>anydoc</td>
+      </tr></table>
+
+<h3 id="example-configuration-57">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.ScalaDocChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;ignoreRegex&quot;&gt;(.*Spec$)|(.*SpecIT$)&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreTokenTypes&quot;&gt;PatDefOrDcl,TypeDefOrDcl,FunDefOrDcl,TmplDef&lt;/parameter&gt;
+  &lt;parameter name=&quot;ignoreOverride&quot;&gt;false&lt;/parameter&gt;
+  &lt;parameter name=&quot;indentStyle&quot;&gt;anydoc&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_SimplifyBooleanExpressionChecker"></a></p>
+
+<h3 id="orgscalastylescalariformsimplifybooleanexpressionchecker---boolean-expression-can-be-simplified">org.scalastyle.scalariform.SimplifyBooleanExpressionChecker - Boolean expression can be simplified</h3>
+
+<ul>
+  <li>id - simplify.boolean.expression</li>
+  <li>description - Boolean expression can be simplified</li>
+  <li>class - org.scalastyle.scalariform.SimplifyBooleanExpressionChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-58">Justification</h4>
+<p>A boolean expression which can be simplified can make code easier to read.</p>
+
+<h4 id="parameters-58">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-58">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.SimplifyBooleanExpressionChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_SpaceAfterCommentStartChecker"></a></p>
+
+<h3 id="orgscalastylescalariformspaceaftercommentstartchecker---checks-a-space-after-the-start-of-the-comment">org.scalastyle.scalariform.SpaceAfterCommentStartChecker - Checks a space after the start of the comment.</h3>
+
+<ul>
+  <li>id - space.after.comment.start</li>
+  <li>description - Checks a space after the start of the comment.</li>
+  <li>class - org.scalastyle.scalariform.SpaceAfterCommentStartChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-59">Justification</h4>
+<p>To bring consistency with how comments should be formatted, leave a space right after the beginning of the comment.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package foobar
+
+object Foobar {
+/**WRONG
+*
+*/
+/** Correct*/
+val d = 2 /*Wrong*/ //Wrong
+/**
+*Correct
+*/
+val e = 3/** Correct*/ // Correct
+}
+</code></pre></div></div>
+
+<h4 id="parameters-59">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-59">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.SpaceAfterCommentStartChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_SpacesAfterPlusChecker"></a></p>
+
+<h3 id="orgscalastylescalariformspacesafterpluschecker---check-that-the-plus-sign-is-followed-by-a-space">org.scalastyle.scalariform.SpacesAfterPlusChecker - Check that the plus sign is followed by a space</h3>
+
+<ul>
+  <li>id - spaces.after.plus</li>
+  <li>description - Check that the plus sign is followed by a space</li>
+  <li>class - org.scalastyle.scalariform.SpacesAfterPlusChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-60">Justification</h4>
+<p>An expression with spaces around + can be easier to read</p>
+
+<h4 id="parameters-60">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-60">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.SpacesAfterPlusChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_SpacesBeforePlusChecker"></a></p>
+
+<h3 id="orgscalastylescalariformspacesbeforepluschecker---check-that-the-plus-sign-is-preceded-by-a-space">org.scalastyle.scalariform.SpacesBeforePlusChecker - Check that the plus sign is preceded by a space</h3>
+
+<ul>
+  <li>id - spaces.before.plus</li>
+  <li>description - Check that the plus sign is preceded by a space</li>
+  <li>class - org.scalastyle.scalariform.SpacesBeforePlusChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-61">Justification</h4>
+<p>An expression with spaces around + can be easier to read</p>
+
+<h4 id="parameters-61">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-61">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.SpacesBeforePlusChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_StructuralTypeChecker"></a></p>
+
+<h3 id="orgscalastylescalariformstructuraltypechecker---check-that-structural-types-are-not-used">org.scalastyle.scalariform.StructuralTypeChecker - Check that structural types are not used.</h3>
+
+<ul>
+  <li>id - structural.type</li>
+  <li>description - Check that structural types are not used.</li>
+  <li>class - org.scalastyle.scalariform.StructuralTypeChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-62">Justification</h4>
+<p>Structural types in Scala can use reflection - this can have unexpected performance consequences.
+Warning: This check can also wrongly pick up type lamdbas and other such constructs. This checker should be used with care. You always have the alternative of the scalac checking for structural types.</p>
+
+<h4 id="parameters-62">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-62">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.StructuralTypeChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_TodoCommentChecker"></a></p>
+
+<h3 id="orgscalastylescalariformtodocommentchecker---check-for-use-of-todofixme-single-line-comments">org.scalastyle.scalariform.TodoCommentChecker - Check for use of TODO/FIXME single line comments</h3>
+
+<ul>
+  <li>id - todo.comment</li>
+  <li>description - Check for use of TODO/FIXME single line comments</li>
+  <li>class - org.scalastyle.scalariform.TodoCommentChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-63">Justification</h4>
+<p>Some projects may consider TODO or FIXME comments in a code bad style. They would rather you fix the problem.</p>
+
+<h4 id="parameters-63">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>words</td>
+        <td>Word list</td>
+        <td>string</td>
+        <td>TODO|FIXME</td>
+      </tr></table>
+
+<h3 id="example-configuration-63">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.TodoCommentChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter default=&quot;TODO|FIXME&quot; type=&quot;string&quot; name=&quot;words&quot;/&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_TokenChecker"></a></p>
+
+<h3 id="orgscalastylescalariformtokenchecker---checks-that-a-regular-expression-cannot-be-matched-in-a-token-if-found-reports-this">org.scalastyle.scalariform.TokenChecker - Checks that a regular expression cannot be matched in a token, if found reports this</h3>
+
+<ul>
+  <li>id - token</li>
+  <li>description - Checks that a regular expression cannot be matched in a token, if found reports this</li>
+  <li>class - org.scalastyle.scalariform.TokenChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-64">Justification</h4>
+<p>Some checks can be carried by just the presence of a particular token.</p>
+
+<h4 id="parameters-64">Parameters</h4>
+<table width="80%"><tr><th>Parameter</th><th>Description</th><th>Type</th><th>Default Value</th></tr><tr><td>regex</td>
+        <td>Regular expression</td>
+        <td>string</td>
+        <td>^$</td>
+      </tr></table>
+
+<h3 id="example-configuration-64">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.TokenChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;regex&quot;&gt;^[ai]sInstanceOf$&lt;/parameter&gt;
+ &lt;/parameters&gt;
+ &lt;customMessage&gt;Avoid casting.&lt;/customMessage&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_UnderscoreImportChecker"></a></p>
+
+<h3 id="orgscalastylescalariformunderscoreimportchecker---avoid-wildcard-imports">org.scalastyle.scalariform.UnderscoreImportChecker - Avoid wildcard imports</h3>
+
+<ul>
+  <li>id - underscore.import</li>
+  <li>description - Avoid wildcard imports</li>
+  <li>class - org.scalastyle.scalariform.UnderscoreImportChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-65">Justification</h4>
+<p>Importing all classes from a package or static members from a class leads to tight coupling between packages or classes and might lead to problems when a new version of a library introduces name clashes.</p>
+
+<h4 id="parameters-65">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-65">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.UnderscoreImportChecker&quot; level=&quot;warning&quot;&gt;
+ &lt;parameters&gt;
+  &lt;parameter name=&quot;ignoreRegex&quot;&gt;collection\.JavaConverters\._|scala\.concurrent\.duration\._&lt;/parameter&gt;
+ &lt;/parameters&gt;
+&lt;/check&gt;</pre>
+<p><a name="org_scalastyle_scalariform_UppercaseLChecker"></a></p>
+
+<h3 id="orgscalastylescalariformuppercaselchecker---checks-that-if-a-long-literal-is-used-then-an-uppercase-l-is-used">org.scalastyle.scalariform.UppercaseLChecker - Checks that if a long literal is used, then an uppercase L is used</h3>
+
+<ul>
+  <li>id - uppercase.l</li>
+  <li>description - Checks that if a long literal is used, then an uppercase L is used</li>
+  <li>class - org.scalastyle.scalariform.UppercaseLChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-66">Justification</h4>
+<p>A lowercase L (l) can look similar to a number 1 with some fonts.</p>
+
+<h4 id="parameters-66">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-66">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.UppercaseLChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_VarFieldChecker"></a></p>
+
+<h3 id="orgscalastylescalariformvarfieldchecker---checks-that-classes-and-objects-do-not-define-mutable-fields">org.scalastyle.scalariform.VarFieldChecker - Checks that classes and objects do not define mutable fields</h3>
+
+<ul>
+  <li>id - var.field</li>
+  <li>description - Checks that classes and objects do not define mutable fields</li>
+  <li>class - org.scalastyle.scalariform.VarFieldChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-67">Justification</h4>
+<p>var (mutable fields) are deprecated if you’re using a strict functional style</p>
+
+<h4 id="parameters-67">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-67">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.VarFieldChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_VarLocalChecker"></a></p>
+
+<h3 id="orgscalastylescalariformvarlocalchecker---checks-that-functions-do-not-define-mutable-variables">org.scalastyle.scalariform.VarLocalChecker - Checks that functions do not define mutable variables</h3>
+
+<ul>
+  <li>id - var.local</li>
+  <li>description - Checks that functions do not define mutable variables</li>
+  <li>class - org.scalastyle.scalariform.VarLocalChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-68">Justification</h4>
+<p>vars (mutable local variables) loops are deprecated if you’re using a strict functional style</p>
+
+<h4 id="parameters-68">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-68">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.VarLocalChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_WhileBraceChecker"></a></p>
+
+<h3 id="orgscalastylescalariformwhilebracechecker---checks-that-while-body-have-braces">org.scalastyle.scalariform.WhileBraceChecker - Checks that while body have braces</h3>
+
+<ul>
+  <li>id - while.brace</li>
+  <li>description - Checks that while body have braces</li>
+  <li>class - org.scalastyle.scalariform.WhileBraceChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-69">Justification</h4>
+<p>While cannot be used in a pure-functional manner, that’s why it’s recommended to never omit braces according to Scala Style Guide.</p>
+
+<h4 id="parameters-69">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-69">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.WhileBraceChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_WhileChecker"></a></p>
+
+<h3 id="orgscalastylescalariformwhilechecker---checks-that-while-is-not-used">org.scalastyle.scalariform.WhileChecker - Checks that while is not used</h3>
+
+<ul>
+  <li>id - while</li>
+  <li>description - Checks that while is not used</li>
+  <li>class - org.scalastyle.scalariform.WhileChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-70">Justification</h4>
+<p>while loops are deprecated if you’re using a strict functional style</p>
+
+<h4 id="parameters-70">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-70">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.WhileChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+<p><a name="org_scalastyle_scalariform_XmlLiteralChecker"></a></p>
+
+<h3 id="orgscalastylescalariformxmlliteralchecker---check-that-xml-literals-are-not-used">org.scalastyle.scalariform.XmlLiteralChecker - Check that XML literals are not used</h3>
+
+<ul>
+  <li>id - xml.literal</li>
+  <li>description - Check that XML literals are not used</li>
+  <li>class - org.scalastyle.scalariform.XmlLiteralChecker</li>
+  <li>default level - WarningLevel</li>
+</ul>
+
+<h4 id="justification-71">Justification</h4>
+<p>Some projects prefer not to have XML literals. They could use a templating engine instead.</p>
+
+<h4 id="parameters-71">Parameters</h4>
+<p>No parameters</p>
+
+<h3 id="example-configuration-71">Example configuration</h3>
+<pre>&lt;check enabled=&quot;true&quot; class=&quot;org.scalastyle.scalariform.XmlLiteralChecker&quot; level=&quot;warning&quot;/&gt;</pre>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"></footer>
+    </div>
+  </body>
+</html>
