@@ -71,7 +71,7 @@ sbt is easy. You can add the jar as a normal library dependency into your
 `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("com.beautiful-scala" %% "sbt-scalastyle" % "1.1.0")
+addSbtPlugin("com.beautiful-scala" %% "sbt-scalastyle" % "{{site.sbt-scalastyle-version}}")
 libraryDependencies += "org.ext" %% "nofoobarchecker" % "1.0.0"
 ```
 
@@ -83,7 +83,7 @@ be good to go.
 The command line has an extra parameter `--externalJar` or `-e`
 
 ```bash
-java -jar scalastyle_2.13-{{site.version}}-assembly.jar \
+java -jar scalastyle_2.13-{{site.scalastyle-version}}-assembly.jar \
   -c scalastyle_config.xml \
   --externalJar nofoobarchecker.jar \
   src/main/scala

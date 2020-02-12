@@ -3,6 +3,33 @@ layout: scalastyle
 title: "Scalastyle - Release notes"
 ---
 
+# Version 1.2.0
+
+Fixes and improvements
+
+- Standardise on one default Scalastyle config file -
+  [`src/main/resources/default_config.xml`](https://github.com/beautiful-scala/scalastyle/blob/v1.2.0/src/main/resources/default_config.xml).
+  ([#11](https://github.com/beautiful-scala/scalastyle/pull/11) -
+  [@mwz](https://github.com/mwz))
+- Fix an issue where having a `CDATA` section on a new line in the config file
+  would cause runtime errors.
+  ([#11](https://github.com/beautiful-scala/scalastyle/pull/11) -
+  [@mwz](https://github.com/mwz))
+
+SBT
+
+- Make the `scalastyleGenerateConfig` task use the default config from
+  Scalastyle. ([#5](https://github.com/beautiful-scala/sbt-scalastyle/pull/5) -
+  [@mwz](https://github.com/mwz))
+- Log the versions of scalastyle and sbt-scalastyle when executing the
+  `scalastyle` task.
+  ([#5](https://github.com/beautiful-scala/sbt-scalastyle/pull/5) -
+  [@mwz](https://github.com/mwz))
+- Remove the prompt asking the user to confirm whether to overwrite
+  `scalastyle-config.xml` file when executing the `scalastyleGenerateConfig`
+  task. ([#5](https://github.com/beautiful-scala/sbt-scalastyle/pull/5) -
+  [@mwz](https://github.com/mwz))
+
 # Version 1.1.1
 
 Fixes

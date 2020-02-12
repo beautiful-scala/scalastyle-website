@@ -18,7 +18,7 @@ The repository for the Scalastyle SBT plugin is:
 Add the following line to `project/plugins.sbt`
 
 ```scala
-addSbtPlugin("com.beautiful-scala" % "sbt-scalastyle" % "1.1.0")
+addSbtPlugin("com.beautiful-scala" % "sbt-scalastyle" % "{{site.sbt-scalastyle-version}}")
 ```
 
 ### Usage

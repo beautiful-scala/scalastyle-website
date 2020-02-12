@@ -6,4 +6,5 @@ exclude:
   - vendor
   - include
   - publish.sh
-version: "1.1.1"
+scalastyle-version: "1.2.0"
+sbt-scalastyle-version: "1.2.0"

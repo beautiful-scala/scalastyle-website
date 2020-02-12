@@ -13,7 +13,7 @@ on Coursera.
 
 ### How do I use scalastyle?
 
-The latest stable version of Scalastyle is {{site.version}} for Scala
+The latest stable version of Scalastyle is {{site.scalastyle-version}} for Scala
 2.11/2.12/2.13. See the [Release Notes](release-notes.html).
 
 There are several ways of using it:
@@ -32,7 +32,7 @@ And you'll need a [configuration](configuration.html) file. If you have your own
 custom rules, then see [custom rules](custom-rules.html).
 
 For the list of possible rules, see
-[Implemented Rules](rules-{{site.version}}.html).
+[Implemented Rules](rules-{{site.scalastyle-version}}.html).
 
 #### Download
 
@@ -47,7 +47,7 @@ The latest development snapshots are available from
 ### Rules
 
 For a list of current rules, see
-[Implemented Rules](rules-{{site.version}}.html).
+[Implemented Rules](rules-{{site.scalastyle-version}}.html).
 
 If you want to add a rule, then please raise an
 [Issue](https://github.com/beautiful-scala/scalastyle/issues) (or even better a
