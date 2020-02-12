@@ -37,8 +37,8 @@ For the list of possible rules, see
 #### Download
 
 To download Scalastyle, the jar is available from Sonatype:
-[2.13](https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.13)
-[2.12](https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.12)
+[2.13](https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.13),
+[2.12](https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.12),
 [2.11](https://oss.sonatype.org/content/repositories/releases/com/beautiful-scala/scalastyle_2.11).  
 For the SBT plugin, see [Scalastyle SBT Plugin](sbt.html).  
 The latest development snapshots are available from
@@ -56,18 +56,11 @@ pull request).
 For a list of rules in the latest development version, see
 [Development Implemented Rules](rules-dev.html).
 
+For the version 1.2.0 rules, see [1.2.0 Implemented Rules](rules-1.2.0.html).  
 For the version 1.1.1 rules, see [1.1.1 Implemented Rules](rules-1.1.1.html).  
 For the version 1.1.0 rules, see [1.1.0 Implemented Rules](rules-1.1.0.html).  
 For the version 1.0.0 rules, see [1.0.0 Implemented Rules](rules-1.0.0.html).  
-For the version 0.9.0 rules, see [0.9.0 Implemented Rules](rules-0.9.0.html).  
-For the version 0.8.0 rules, see [0.8.0 Implemented Rules](rules-0.8.0.html).  
-For the version 0.7.0 rules, see [0.7.0 Implemented Rules](rules-0.7.0.html).  
-For the version 0.6.0 rules, see [0.6.0 Implemented Rules](rules-0.6.0.html).  
-For the version 0.5.0 rules, see [0.5.0 Implemented Rules](rules-0.5.0.html).  
-For the version 0.4.0 rules, see [0.4.0 Implemented Rules](rules-0.4.0.html).  
-For the version 0.3.0 rules, see [0.3.0 Implemented Rules](rules-0.3.0.html).  
-For the version 0.2.0 rules, see [0.2.0 Implemented Rules](rules-0.2.0.html).  
-For the version 0.1.0 rules, see [0.1.0 Implemented Rules](rules-0.1.0.html).
+For older versions, see [scalastyle.org](http://www.scalastyle.org).
 
 ### Contributing
 
