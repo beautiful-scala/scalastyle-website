@@ -3,6 +3,22 @@ layout: scalastyle
 title: "Scalastyle - Release notes"
 ---
 
+# Version 1.3.0
+
+New features
+
+- Add `CurliesImportChecker` rule, which allows only for single imports (no
+  renaming and no hiding imports are allowed in order to minimize merge errors
+  in import declarations). This rule is disabled by default.
+  ([#12](https://github.com/beautiful-scala/scalastyle/pull/12) -
+  [@sherfert](https://github.com/sherfert))
+
+Improvements
+
+- Make `PackageNamesChecker` allow only lowercase letters in package names.
+  ([#18](https://github.com/beautiful-scala/scalastyle/pull/18) -
+  [@anilkumarmyla](https://github.com/anilkumarmyla))
+
 # Version 1.2.0
 
 Fixes and improvements

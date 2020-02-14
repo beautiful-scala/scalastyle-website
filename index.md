@@ -56,6 +56,7 @@ pull request).
 For a list of rules in the latest development version, see
 [Development Implemented Rules](rules-dev.html).
 
+For the version 1.3.0 rules, see [1.3.0 Implemented Rules](rules-1.3.0.html).  
 For the version 1.2.0 rules, see [1.2.0 Implemented Rules](rules-1.2.0.html).  
 For the version 1.1.1 rules, see [1.1.1 Implemented Rules](rules-1.1.1.html).  
 For the version 1.1.0 rules, see [1.1.0 Implemented Rules](rules-1.1.0.html).  
