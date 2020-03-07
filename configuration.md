@@ -6,7 +6,7 @@ title: "Scalastyle - Configuration"
 ### Quick start
 
 You can just use the default Scalastyle configuration
-[scalastyle_config.xml](https://raw.githubusercontent.com/beautiful-scala/scalastyle/v{{site.scalastyle-version}}/lib/scalastyle_config.xml).
+[default_config.xml](https://raw.githubusercontent.com/beautiful-scala/scalastyle/v{{site.scalastyle-version}}/src/main/resources/default_config.xml).
 Right-click this link and select `Save link as`. This is the one we use for
 Scalastyle development, so it's obviously the best :-)
 

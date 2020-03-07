@@ -108,7 +108,7 @@ configuration. For instance:
 ```scala
 (scalastyleConfig in Test) := baseDirectory.value / "scalastyle-test-config.xml"
 (scalastyleConfig in Test) := file("/foo/bar/scalastyle-test-config.xml")
-(scalastyleConfigUrl in Test) := Some(url("http://www.scalastyle.org/scalastyle_config.xml"))
+(scalastyleConfigUrl in Test) := Some(url("https://raw.githubusercontent.com/beautiful-scala/scalastyle/v{{site.scalastyle-version}}/src/main/resources/default_config.xml"))
 ```
 
 ### Running scalastyle as part of another task

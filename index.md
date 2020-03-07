@@ -14,7 +14,9 @@ on Coursera.
 ### How do I use scalastyle?
 
 The latest stable version of Scalastyle is {{site.scalastyle-version}} for Scala
-2.11/2.12/2.13. See the [Release Notes](release-notes.html).
+2.11/2.12/2.13. For more details, see the release notes for
+[Scalastyle](https://github.com/beautiful-scala/scalastyle/releases) and
+[sbt-scalastyle](https://github.com/beautiful-scala/sbt-scalastyle/releases).
 
 There are several ways of using it:
 
@@ -53,9 +55,7 @@ If you want to add a rule, then please raise an
 [Issue](https://github.com/beautiful-scala/scalastyle/issues) (or even better a
 pull request).
 
-For a list of rules in the latest development version, see
-[Development Implemented Rules](rules-dev.html).
-
+For the version 1.4.0 rules, see [1.4.0 Implemented Rules](rules-1.4.0.html).  
 For the version 1.3.0 rules, see [1.3.0 Implemented Rules](rules-1.3.0.html).  
 For the version 1.2.0 rules, see [1.2.0 Implemented Rules](rules-1.2.0.html).  
 For the version 1.1.1 rules, see [1.1.1 Implemented Rules](rules-1.1.1.html).  

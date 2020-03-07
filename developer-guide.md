@@ -83,7 +83,7 @@ following things make it more likely that we will accept your pull request:
   log message for the change. This makes it a lot easier for everyone. See the
   section on squashing.
 - The code has the correct style. To check this, you can use Scalastyle.
-  Seriously, use the scalastyle_config.xml to check your code.
+  Seriously, use the `src/main/resources/default_config.xml` to check your code.
 
 For pull requests, please follow the guidelines in
 [10 tips for better Pull Requests by Mark Seemann](http://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests).
