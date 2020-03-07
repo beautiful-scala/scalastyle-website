@@ -167,7 +167,7 @@ configuration. For instance:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span><span class="n">scalastyleConfig</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="nv">baseDirectory</span><span class="o">.</span><span class="py">value</span> <span class="o">/</span> <span class="s">"scalastyle-test-config.xml"</span>
 <span class="o">(</span><span class="n">scalastyleConfig</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="nf">file</span><span class="o">(</span><span class="s">"/foo/bar/scalastyle-test-config.xml"</span><span class="o">)</span>
-<span class="o">(</span><span class="n">scalastyleConfigUrl</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="nc">Some</span><span class="o">(</span><span class="nf">url</span><span class="o">(</span><span class="s">"http://www.scalastyle.org/scalastyle_config.xml"</span><span class="o">))</span>
+<span class="o">(</span><span class="n">scalastyleConfigUrl</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="nc">Some</span><span class="o">(</span><span class="nf">url</span><span class="o">(</span><span class="s">"https://raw.githubusercontent.com/beautiful-scala/scalastyle/v1.4.0/src/main/resources/default_config.xml"</span><span class="o">))</span>
 </code></pre></div></div>
 
 <h3 id="running-scalastyle-as-part-of-another-task">Running scalastyle as part of another task</h3>
