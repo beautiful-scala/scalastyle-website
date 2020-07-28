@@ -175,13 +175,13 @@ configuration. For instance:</p>
 <p>You can also have your scalastyle checks automatically run as part of another
 task:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a default Scala style task to run with tests
-</span><span class="k">lazy</span> <span class="k">val</span> <span class="nv">testScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"testScalastyle"</span><span class="o">)</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a default Scala style task to run with tests</span>
+<span class="k">lazy</span> <span class="k">val</span> <span class="nv">testScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"testScalastyle"</span><span class="o">)</span>
 
-<span class="c1">// scalastyle &gt;= 0.9.0
-</span><span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
-<span class="c1">// scalastyle &lt;= 0.8.0
-</span><span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &gt;= 0.9.0</span>
+<span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &lt;= 0.8.0</span>
+<span class="n">testScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Test</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
 
 <span class="o">(</span><span class="n">test</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="o">:=</span> <span class="o">((</span><span class="n">test</span> <span class="n">in</span> <span class="nc">Test</span><span class="o">)</span> <span class="n">dependsOn</span> <span class="n">testScalastyle</span><span class="o">).</span><span class="py">value</span>
 </code></pre></div></div>
@@ -190,10 +190,10 @@ task:</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">lazy</span> <span class="k">val</span> <span class="nv">compileScalastyle</span> <span class="k">=</span> <span class="n">taskKey</span><span class="o">[</span><span class="kt">Unit</span><span class="o">](</span><span class="s">"compileScalastyle"</span><span class="o">)</span>
 
-<span class="c1">// scalastyle &gt;= 0.9.0
-</span><span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
-<span class="c1">// scalastyle &lt;= 0.8.0
-</span><span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &gt;= 0.9.0</span>
+<span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
+<span class="c1">// scalastyle &lt;= 0.8.0</span>
+<span class="n">compileScalastyle</span> <span class="o">:=</span> <span class="nv">org</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">sbt</span><span class="o">.</span><span class="py">ScalastylePlugin</span><span class="o">.</span><span class="py">scalastyle</span><span class="o">.</span><span class="py">in</span><span class="o">(</span><span class="nc">Compile</span><span class="o">).</span><span class="py">toTask</span><span class="o">(</span><span class="s">""</span><span class="o">).</span><span class="py">value</span>
 
 <span class="o">(</span><span class="n">compile</span> <span class="n">in</span> <span class="nc">Compile</span><span class="o">)</span> <span class="o">:=</span> <span class="o">((</span><span class="n">compile</span> <span class="n">in</span> <span class="nc">Compile</span><span class="o">)</span> <span class="n">dependsOn</span> <span class="n">compileScalastyle</span><span class="o">).</span><span class="py">value</span>
 </code></pre></div></div>

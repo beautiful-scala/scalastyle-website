@@ -63,26 +63,26 @@ with any parameters. For a list of rules plus parameters, see
 <p>If you wish to turn off checking for a section of code, you can put a comment in
 the source before and after the section, with the following syntax:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off
-</span><span class="o">...</span>
-<span class="c1">// naughty stuff
-</span><span class="o">...</span>
-<span class="c1">// scalastyle:on
-</span></code></pre></div></div>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off</span>
+<span class="o">...</span>
+<span class="c1">// naughty stuff</span>
+<span class="o">...</span>
+<span class="c1">// scalastyle:on</span>
+</code></pre></div></div>
 
 <p>You can switch off checking for a single line using a comment at the end of the
 line:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">naughty</span><span class="o">()</span>  <span class="c1">// scalastyle:ignore
-</span></code></pre></div></div>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">naughty</span><span class="o">()</span>  <span class="c1">// scalastyle:ignore</span>
+</code></pre></div></div>
 
 <p>You can also switch off checking for a specific rule by specifying the id of the
 rule to ignore:</p>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off magic.number
-</span><span class="k">var</span> <span class="n">foobar</span> <span class="k">=</span> <span class="mi">134</span>
-<span class="c1">// scalastyle:on magic.number
-</span></code></pre></div></div>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// scalastyle:off magic.number</span>
+<span class="k">var</span> <span class="n">foobar</span> <span class="k">=</span> <span class="mi">134</span>
+<span class="c1">// scalastyle:on magic.number</span>
+</code></pre></div></div>
 
 <h3 id="custom-messages">Custom messages</h3>
 
