@@ -55,6 +55,7 @@ If you want to add a rule, then please raise an
 [Issue](https://github.com/beautiful-scala/scalastyle/issues) (or even better a
 pull request).
 
+For the version 1.5.0 rules, see [1.5.0 Implemented Rules](rules-1.5.0.html).  
 For the version 1.4.0 rules, see [1.4.0 Implemented Rules](rules-1.4.0.html).  
 For the version 1.3.0 rules, see [1.3.0 Implemented Rules](rules-1.3.0.html).  
 For the version 1.2.0 rules, see [1.2.0 Implemented Rules](rules-1.2.0.html).  
